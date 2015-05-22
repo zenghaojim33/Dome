@@ -106,3 +106,7 @@
 //二维码地址   用户id
 #define RQCode @"http://app.dome123.com/web/registerPage.aspx?sid=%@"
 #endif
+
+
+
+//asdadasd

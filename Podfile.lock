@@ -1,0 +1,82 @@
+PODS:
+  - AFNetworking (2.5.1):
+    - AFNetworking/NSURLConnection (= 2.5.1)
+    - AFNetworking/NSURLSession (= 2.5.1)
+    - AFNetworking/Reachability (= 2.5.1)
+    - AFNetworking/Security (= 2.5.1)
+    - AFNetworking/Serialization (= 2.5.1)
+    - AFNetworking/UIKit (= 2.5.1)
+  - AFNetworking/NSURLConnection (2.5.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.1)
+  - AFNetworking/Security (2.5.1)
+  - AFNetworking/Serialization (2.5.1)
+  - AFNetworking/UIKit (2.5.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - BlocksKit (2.2.5):
+    - BlocksKit/All (= 2.2.5)
+  - BlocksKit/All (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+    - BlocksKit/MessageUI
+    - BlocksKit/UIKit
+  - BlocksKit/Core (2.2.5)
+  - BlocksKit/DynamicDelegate (2.2.5)
+  - BlocksKit/MessageUI (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/UIKit (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - Mantle (1.5.4):
+    - Mantle/extobjc (= 1.5.4)
+  - Mantle/extobjc (1.5.4)
+  - Masonry (0.5.3)
+  - MBProgressHUD (0.9)
+  - SDWebImage (3.7.1):
+    - SDWebImage/Core (= 3.7.1)
+  - SDWebImage/Core (3.7.1)
+  - SSKeychain (1.2.2)
+  - STCollapseTableView (0.1.1)
+  - SVProgressHUD (1.1.2)
+  - TMCache (1.2.3)
+  - UIActivityIndicator-for-SDWebImage (1.2):
+    - SDWebImage (~> 3.7)
+  - WebViewJavascriptBridge (4.1.4)
+
+DEPENDENCIES:
+  - AFNetworking
+  - BlocksKit (~> 2.2.0)
+  - Mantle (~> 1.5.1)
+  - Masonry (~> 0.5.3)
+  - MBProgressHUD (~> 0.8)
+  - SDWebImage (~> 3.7.1)
+  - SSKeychain
+  - STCollapseTableView
+  - SVProgressHUD (~> 1.0)
+  - TMCache (~> 1.2.2)
+  - UIActivityIndicator-for-SDWebImage
+  - WebViewJavascriptBridge (~> 4.1.4)
+
+SPEC CHECKSUMS:
+  AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
+  BlocksKit: 4439e7f30a9f90743462ca63545a15c1f4304cef
+  Mantle: d5fbaf30fbc58031223af13812c060e15934a1fe
+  Masonry: 35368c2ca9577ca87722c12fc52c4bad9b1c1516
+  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
+  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
+  SSKeychain: cc48bd3ad24fcd9125adb9e0d23dd50b8bbd08b9
+  STCollapseTableView: 472507d1cadf06b2c97914c4920ef9e8aff83e9d
+  SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438
+  TMCache: 11589ef8c40909114a5e60132711c9a559e01d97
+  UIActivityIndicator-for-SDWebImage: 8bd92c15280fbe54816448c6b14674145eee05c7
+  WebViewJavascriptBridge: 259a6c8c67b492bd8079c9944b6866d3476e16ac
+
+COCOAPODS: 0.36.4

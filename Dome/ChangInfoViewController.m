@@ -1,0 +1,865 @@
+//
+//  ChangInfoViewController.m
+//  Dome
+//
+//  Created by BTW on 15/1/4.
+//  Copyright (c) 2015年 jenk. All rights reserved.
+//
+
+#import "ChangInfoViewController.h"
+#import "BankViewController.h"
+#import "RegExpValidate.h"
+@interface ChangInfoViewController ()
+<
+    UITextFieldDelegate,
+    UITableViewDataSource,
+    UITableViewDelegate,
+    BankDelegate,
+    UIActionSheetDelegate,
+    UIImagePickerControllerDelegate,
+    UINavigationControllerDelegate
+>
+{
+    //省、市、县
+    NSMutableArray *provinces, *cities, *areas;
+    
+    NSString *provincesString,*citiesString,*areasString;
+    
+    int touchPickInt;
+    
+    UIImage * myImage;
+    //判断进入照相机或相册
+    BOOL cream;
+    
+    CGRect initFrame;
+    
+    MBProgressHUD * HUD;
+
+    ShareInfo * shareInfo;
+    
+}
+@property (strong, nonatomic)UIView *BGView;
+@property(nonatomic,strong)UITextField * nameTF;
+@property(nonatomic,strong)UITextField * ProvinceTF;
+@property(nonatomic,strong)UITextField * CityTF;
+@property(nonatomic,strong)UITextField * AreaTF;
+@property(nonatomic,strong)UITextField * AddressTF;
+@property(nonatomic,strong)UITextField * EMailTF;
+@property(nonatomic,strong)UITextField * BankUserNameTF;
+@property(nonatomic,strong)UITextField * BankNameTF;
+@property(nonatomic,strong)UITextField * BankNumberTF;
+@property(nonatomic,strong)UITextField * IDNumberTF;
+@property(nonatomic,strong)UITextField * ShopTextView;
+
+//TableView
+@property(nonatomic,strong)UITableView * ProvinceTableView;
+@property(nonatomic,strong)UITableView * CityTableView;
+@property(nonatomic,strong)UITableView * AreaTableView;
+
+@property(nonatomic,strong)UIButton * ImageButton;
+
+@property(nonatomic,strong)UIScrollView * scrollView;
+
+@end
+
+@implementation ChangInfoViewController
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+        backItem.title = @"";
+        
+        self.navigationItem.backBarButtonItem = backItem;
+        
+
+    
+    NSString * FirstLogin = [[NSUserDefaults standardUserDefaults]objectForKey:@"FirstLogin"];
+    
+    if ([FirstLogin isEqualToString:@"YES"]) {
+        
+        if (self.isChange == YES) {
+            
+
+            
+        }else{
+            
+            [self.navigationController popViewControllerAnimated:NO];
+            
+        }
+        
+    }else{
+        
+    initFrame = self.view.frame;
+        
+    }
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    
+    [self.view addSubview:self.scrollView];
+    
+    if (self.isChange == YES) {
+        self.title = @"修改资料";
+    }else{
+        self.title = @"完善资料";
+    }
+    
+    self.BGView = [[UIView alloc]initWithFrame:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height)];
+    self.BGView.backgroundColor = [UIColor whiteColor];
+    [self.scrollView addSubview:self.BGView];
+    
+    self.BGView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.BGView.layer.shadowOffset = CGSizeMake(1, 1);
+    self.BGView.layer.shadowOpacity = 0.2;
+    
+    /******************************************************************/
+    
+    UIImageView * BGImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"BGView.jpg"]];
+    BGImage.frame = CGRectMake(0, 0, self.view.frame.size.width, self.BGView.frame.size.height);
+    [self.BGView addSubview:BGImage];
+    
+    /******************************************************************/
+    
+
+    CGRect frame = CGRectMake(16, 3, 70, 70);
+//    self.ImageButton = [[UIButton alloc]initWithFrame:frame];
+//    [self.ImageButton setBackgroundImage:[UIImage imageNamed:@"测试头像.png"] forState:UIControlStateNormal];
+//    self.ImageButton.backgroundColor = [UIColor whiteColor];
+//    [self.ImageButton addTarget:self action:@selector(TouchimageButton:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.BGView addSubview:self.ImageButton];
+
+//    frame.origin.x+=75;
+//    frame.origin.y+=5;
+//    frame.size = CGSizeMake(self.view.frame.size.width-110, 30);
+//    UILabel * nanmeLabel = [[UILabel alloc]initWithFrame:frame];
+//    nanmeLabel.text = @"Jenk";
+//    [self.BGView addSubview:nanmeLabel];
+    
+    frame.origin.x = 16;
+    frame.origin.y +=15;
+    frame.size = CGSizeMake(self.view.frame.size.width-32, 30);
+    
+    self.nameTF = [[UITextField alloc]initWithFrame:frame];
+    self.nameTF.placeholder = @"请输入店铺名";
+    self.nameTF.clearButtonMode = UITextFieldViewModeAlways;
+    self.nameTF.borderStyle = UITextBorderStyleBezel;
+    //    self.ProvinceTF.userInteractionEnabled = NO;
+    self.nameTF.returnKeyType = UIReturnKeyDone;
+    self.nameTF.delegate = self;
+    self.nameTF.tag = 0;
+    self.nameTF.font = [UIFont systemFontOfSize:14.0];
+    [self.BGView addSubview:self.nameTF];
+    
+    /******************************************************************/
+    
+//    shareInfo = [ShareInfo shareInstance];
+//    frame.origin.y +=30;
+//    UILabel * phoneLabel = [[UILabel alloc]initWithFrame:frame];
+//    phoneLabel.text = shareInfo.userModel.phone;
+//    [self.BGView addSubview:phoneLabel];
+    
+    /******************************************************************/
+    
+    frame.origin.y+=40;
+    frame.origin.x= 16;
+    frame.size.width = (self.view.frame.size.width-32)/3-10;
+    
+    /*****************************************************************  */
+    
+    self.ProvinceTF = [[UITextField alloc]initWithFrame:frame];
+    self.ProvinceTF.placeholder = @"省";
+    self.ProvinceTF.borderStyle = UITextBorderStyleBezel;
+    //    self.ProvinceTF.userInteractionEnabled = NO;
+    self.ProvinceTF.returnKeyType = UIReturnKeyDone;
+    self.ProvinceTF.delegate = self;
+    self.ProvinceTF.tag = 1;
+    self.ProvinceTF.font = [UIFont systemFontOfSize:14.0];
+    [self.BGView addSubview:self.ProvinceTF];
+    
+    UIButton * pickButton1 = [[UIButton alloc]initWithFrame:CGRectMake(self.ProvinceTF.frame.size.width-30, 2, 26, 26)];
+    [pickButton1 setBackgroundImage:[UIImage imageNamed:@"PickerBGView.jpg"] forState:UIControlStateNormal];
+    [pickButton1 addTarget:self action:@selector(TouchPickButton:) forControlEvents:UIControlEventTouchUpInside];
+    pickButton1.tag = 1;
+    [self.ProvinceTF addSubview:pickButton1];
+    
+    /******************************************************************/
+    
+    frame.origin.x += (self.view.frame.size.width-32)/3*1+5;
+    
+    /******************************************************************/
+    
+    self.CityTF = [[UITextField alloc]initWithFrame:frame];
+    self.CityTF.placeholder = @"市";
+    self.CityTF.borderStyle = UITextBorderStyleBezel;
+    //    self.CityTF.userInteractionEnabled = NO;
+    self.CityTF.returnKeyType = UIReturnKeyDone;
+    self.CityTF.delegate = self;
+    self.CityTF.tag = 2;
+    self.CityTF.font = [UIFont systemFontOfSize:14.0];
+    [self.BGView addSubview:self.CityTF];
+    
+    UIButton * pickButton2 = [[UIButton alloc]initWithFrame:CGRectMake(self.CityTF.frame.size.width-30, 2, 26, 26)];
+    [pickButton2 setBackgroundImage:[UIImage imageNamed:@"PickerBGView.jpg"] forState:UIControlStateNormal];
+    [pickButton2 addTarget:self action:@selector(TouchPickButton:) forControlEvents:UIControlEventTouchUpInside];
+    pickButton2.tag = 2;
+    [self.CityTF addSubview:pickButton2];
+    
+    /******************************************************************/
+    
+    frame.origin.x += (self.view.frame.size.width-32)/3*1+5;
+    
+    /******************************************************************/
+    
+    self.AreaTF = [[UITextField alloc]initWithFrame:frame];
+    self.AreaTF.placeholder = @"区";
+    self.AreaTF.borderStyle = UITextBorderStyleBezel;
+    //    self.AreaTF.userInteractionEnabled = NO;
+    self.AreaTF.returnKeyType = UIReturnKeyDone;
+    self.AreaTF.delegate = self;
+    self.AreaTF.tag = 3;
+    self.AreaTF.font = [UIFont systemFontOfSize:14.0];
+    [self.BGView addSubview:self.AreaTF];
+    
+    UIButton * pickButton3 = [[UIButton alloc]initWithFrame:CGRectMake(self.AreaTF.frame.size.width-30, 2, 26, 26)];
+    [pickButton3 setBackgroundImage:[UIImage imageNamed:@"PickerBGView.jpg"] forState:UIControlStateNormal];
+    [pickButton3 addTarget:self action:@selector(TouchPickButton:) forControlEvents:UIControlEventTouchUpInside];
+    pickButton3.tag = 3;
+    [self.AreaTF addSubview:pickButton3];
+    
+    /******************************************************************/
+    
+    frame.origin.x = 16;
+    frame.origin.y += 40;
+    frame.size.width = self.view.frame.size.width-32;
+    
+    /******************************************************************/
+    
+    self.AddressTF = [[UITextField alloc]initWithFrame:frame];
+    self.AddressTF.placeholder = @"详细地址";
+    self.AddressTF.clearButtonMode = UITextFieldViewModeAlways;
+    self.AddressTF.borderStyle = UITextBorderStyleBezel;
+    self.AddressTF.returnKeyType = UIReturnKeyDone;
+    self.AddressTF.delegate = self;
+    self.AddressTF.tag = 4;
+    self.AddressTF.font = [UIFont systemFontOfSize:14.0];
+    [self.BGView addSubview:self.AddressTF];
+    
+    /******************************************************************/
+    
+    frame.origin.y+=40;
+    
+    /******************************************************************/
+    
+    self.EMailTF = [[UITextField alloc]initWithFrame:frame];
+    self.EMailTF.placeholder = @"邮箱";
+    self.EMailTF.clearButtonMode = UITextFieldViewModeAlways;
+    self.EMailTF.borderStyle = UITextBorderStyleBezel;
+    self.EMailTF.returnKeyType = UIReturnKeyDone;
+    self.EMailTF.delegate = self;
+    self.EMailTF.tag = 5;
+    self.EMailTF.font = [UIFont systemFontOfSize:14.0];
+    [self.BGView addSubview:self.EMailTF];
+    
+    /******************************************************************/
+    
+    frame.origin.y+=40;
+    
+    /******************************************************************/
+    
+    self.BankUserNameTF = [[UITextField alloc]initWithFrame:frame];
+    self.BankUserNameTF.placeholder = @"帐户名";
+    self.BankUserNameTF.clearButtonMode = UITextFieldViewModeAlways;
+    self.BankUserNameTF.borderStyle = UITextBorderStyleBezel;
+    self.BankUserNameTF.returnKeyType = UIReturnKeyDone;
+    self.BankUserNameTF.delegate = self;
+    self.BankUserNameTF.tag = 6;
+    self.BankUserNameTF.font = [UIFont systemFontOfSize:14.0];
+    [self.BGView addSubview:self.BankUserNameTF];
+    
+    /******************************************************************/
+    
+    frame.origin.y+=40;
+    
+    /******************************************************************/
+    
+    self.BankNameTF = [[UITextField alloc]initWithFrame:frame];
+    self.BankNameTF.placeholder = @"开户行";
+    self.BankNameTF.borderStyle = UITextBorderStyleBezel;
+    self.BankNameTF.returnKeyType = UIReturnKeyDone;
+    self.BankNameTF.delegate = self;
+    self.BankNameTF.tag = 7;
+    self.BankNameTF.font = [UIFont systemFontOfSize:14.0];
+    [self.BGView addSubview:self.BankNameTF];
+    
+    UIButton * pickButton4 = [[UIButton alloc]initWithFrame:CGRectMake(self.BankNameTF.frame.size.width-30, 2, 26, 26)];
+    [pickButton4 setBackgroundImage:[UIImage imageNamed:@"PickerBGView2.jpg"] forState:UIControlStateNormal];
+    [pickButton4 addTarget:self action:@selector(TouchPickButton4:) forControlEvents:UIControlEventTouchUpInside];
+    pickButton4.tag = 1;
+    [self.BankNameTF addSubview:pickButton4];
+    
+    /******************************************************************/
+    
+    frame.origin.y+=40;
+    
+    /******************************************************************/
+    
+    self.BankNumberTF= [[UITextField alloc]initWithFrame:frame];
+    self.BankNumberTF.placeholder = @"账号";
+    self.BankNumberTF.clearButtonMode = UITextFieldViewModeAlways;
+    self.BankNumberTF.borderStyle = UITextBorderStyleBezel;
+    self.BankNumberTF.returnKeyType = UIReturnKeyDone;
+    self.BankNumberTF.delegate = self;
+    self.BankNumberTF.tag = 8;
+    self.BankNumberTF.font = [UIFont systemFontOfSize:14.0];
+    [self.BGView addSubview:self.BankNumberTF];
+    
+    /******************************************************************/
+    
+    frame.origin.y+=40;
+    
+    /******************************************************************/
+    
+    self.IDNumberTF = [[UITextField alloc]initWithFrame:frame];
+    self.IDNumberTF.placeholder = @"身份证";
+    self.IDNumberTF.clearButtonMode = UITextFieldViewModeAlways;
+    self.IDNumberTF.borderStyle = UITextBorderStyleBezel;
+    self.IDNumberTF.returnKeyType = UIReturnKeyDone;
+    self.IDNumberTF.delegate = self;
+    self.IDNumberTF.tag = 9;
+    self.IDNumberTF.font = [UIFont systemFontOfSize:14.0];
+    [self.BGView addSubview:self.IDNumberTF];
+    
+    
+    /******************************************************************/
+    
+    frame.origin.y+=40;
+
+    self.ShopTextView = [[UITextField alloc]initWithFrame:frame];
+    self.ShopTextView.placeholder = @"请输入店铺简介";
+    self.ShopTextView.clearButtonMode = UITextFieldViewModeAlways;
+    self.ShopTextView.borderStyle = UITextBorderStyleBezel;
+    self.ShopTextView.returnKeyType = UIReturnKeyDone;
+    self.ShopTextView.delegate = self;
+    self.ShopTextView.tag = 10;
+    self.ShopTextView.font = [UIFont systemFontOfSize:14.0];
+    [self.BGView addSubview:self.ShopTextView];
+    
+    /******************************************************************/
+    
+    /******************************************************************/
+    
+    frame.origin.y+=40;
+    frame.size.height = 35;
+    
+    /******************************************************************/
+    
+    UIButton * DoneButton = [[UIButton alloc]initWithFrame:frame];
+    [DoneButton setTitle:@"确定" forState:UIControlStateNormal];
+    [DoneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [DoneButton setBackgroundImage:[UIImage imageNamed:@"ButtonBGView.jpg"] forState:UIControlStateNormal];
+    [DoneButton addTarget:self action:@selector(TouchDoneButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.BGView addSubview:DoneButton];
+    
+    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, frame.origin.y+40)];
+    
+    /******************************************************************/
+    
+    if (self.isChange == YES) {
+
+        
+        shareInfo = [ShareInfo shareInstance];
+        
+        NSMutableDictionary * data = [[NSMutableDictionary alloc]initWithObjects:@[shareInfo.userModel.userID] forKeys:@[@"id"]];
+        
+        SBJsonWriter * json = [[SBJsonWriter alloc]init];
+        NSString * jsonData = [json stringWithObject:data];
+        
+        
+        NSString * link = [[NSString stringWithFormat:@"http://app.dome123.com/Handler.ashx?Action=GetInfo&data=%@",jsonData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSLog(@"link:%@",link);
+        HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        HUD.labelText = @"正在获取数据";
+        [HTTPRequestManager getURL:link andParameter:nil onCompletion:^(NSDictionary *dict, NSError *error) {
+            NSMutableDictionary * response = [NSMutableDictionary dictionaryWithDictionary:dict];
+            [self GetInfoData:response];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                
+            });
+            
+        }];
+    }
+    
+    provinces = [[NSMutableArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"area.plist" ofType:nil]];
+    cities = [[provinces objectAtIndex:0] objectForKey:@"cities"];
+    areas = [[cities objectAtIndex:0] objectForKey:@"areas"];
+}
+- (void)GetInfoData:(NSMutableDictionary*)dict
+{
+    NSLog(@"dict:%@",dict);
+    NSMutableDictionary * info = [dict objectForKey:@"info"];
+    
+    self.nameTF.text=[info objectForKey:@"shopname"];
+    self.ProvinceTF.text=[info objectForKey:@"provinces"];
+    self.CityTF.text=[info objectForKey:@"city"];
+    self.AreaTF.text=[info objectForKey:@"area"];
+    self.AddressTF.text=[info objectForKey:@"address"];
+    self.EMailTF.text=[info objectForKey:@"email"];
+    self.BankNameTF.text=[info objectForKey:@"acountname"];
+    self.BankUserNameTF.text=[info objectForKey:@"bank"];
+    self.IDNumberTF.text=[info objectForKey:@"certificate"];
+    self.BankNumberTF.text=[info objectForKey:@"bankno"];
+    self.ShopTextView.text=[info objectForKey:@"shopinfo"];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self AllTextFieldExit];
+    return YES;
+}
+- (void)AllTextFieldExit
+{
+
+    [self.ProvinceTF resignFirstResponder];
+    [self.CityTF resignFirstResponder];
+    [self.AreaTF resignFirstResponder];
+    [self.AddressTF resignFirstResponder];
+    [self.EMailTF resignFirstResponder];
+    [self.BankUserNameTF resignFirstResponder];
+    [self.BankNameTF resignFirstResponder];
+    [self.BankNumberTF resignFirstResponder];
+    [self.IDNumberTF resignFirstResponder];
+    [self.nameTF resignFirstResponder];
+    [self.ShopTextView resignFirstResponder];
+}
+- (IBAction)TouchView:(id)sender
+{
+    [self AllTextFieldExit];
+}
+#pragma mark 确定
+- (void)TouchDoneButton:(UIButton*)button
+{
+    [self AllTextFieldExit];
+    
+    //测试
+    
+//    self.nameTF.text=@"Jenk";
+//    self.ProvinceTF.text=@"广东";
+//    self.CityTF.text=@"广州市";
+//    self.AreaTF.text=@"白云区";
+//    self.AddressTF.text=@"白云大道999号";
+//    self.EMailTF.text=@"236233312@qq.com";
+//    self.BankUserNameTF.text=@"郑先生";
+//    self.BankNameTF.text=@"交通银行";
+//    self.IDNumberTF.text=@"441222399439910495";
+//    self.BankNumberTF.text=@"62178570000098754324";
+//    self.ShopTextView.text=@"我的店铺简介xxx12334";
+//
+    if (self.ProvinceTF.text.length==0||self.CityTF.text.length==0||self.AreaTF.text.length==0||self.AddressTF.text.length==0||self.EMailTF.text.length==0||self.BankUserNameTF.text.length==0||self.BankNameTF.text.length==0||self.BankNumberTF.text.length==0||self.IDNumberTF.text.length==0) {
+
+        
+        [self showAlertViewForTitle:@"信息不可为空" AndMessage:nil];
+        
+    }else{
+      
+        //判断邮箱
+       BOOL isEMail = [RegExpValidate validateEmail:self.EMailTF.text];
+       BOOL isIDNumber = [RegExpValidate validateIdentityCard:self.IDNumberTF.text];
+
+        if (isEMail == NO)
+        {
+            [self showAlertViewForTitle:@"邮箱不合法" AndMessage:nil];
+        }else if (isIDNumber == NO)
+        {
+            [self showAlertViewForTitle:@"身份证号码不合法" AndMessage:nil];
+        }else{
+            shareInfo = [ShareInfo shareInstance];
+        
+       
+            
+            
+            NSString * userID = shareInfo.userModel.userID;//用户id
+            NSString * shopname = self.nameTF.text;//店铺名
+            NSString * province = self.ProvinceTF.text;//省
+            NSString * city = self.CityTF.text;//城
+            NSString * area = self.AreaTF.text;//区
+            NSString * address = self.AddressTF.text;//详细地址
+            NSString * email = self.EMailTF.text;//邮箱
+            NSString * acountname = self.BankNameTF.text;//银行
+            NSString * bank = self.BankUserNameTF.text;//开户名
+            NSString * certificate = self.IDNumberTF.text;//身份证
+            NSString * bankno = self.BankNumberTF.text;//卡号
+            NSString * shopinfo = self.ShopTextView.text;//店铺简介
+        
+            NSMutableDictionary * data = [[NSMutableDictionary alloc]initWithObjects:@[userID,province,city,area,address,email,acountname,bank,bankno,certificate,shopname,shopinfo] forKeys:@[@"id",@"provinces",@"city",@"area",@"address",@"email",@"acountname",@"bank",@"bankno",@"certificate",@"shopname",@"shopinfo"]];
+    
+            SBJsonWriter * json = [[SBJsonWriter alloc]init];
+            NSString * jsonData = [json stringWithObject:data];
+        
+            
+            NSString * link = [[NSString stringWithFormat:ChangeInfo,jsonData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];;
+        
+            HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+            
+            [HTTPRequestManager getURL:link andParameter:nil onCompletion:^(NSDictionary *dict, NSError *error) {
+                NSMutableDictionary * response = [NSMutableDictionary dictionaryWithDictionary:dict];
+                [self GetInfoData:response];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+
+                });
+                
+            }];
+        }
+
+    }
+    
+    
+    
+  
+    
+}
+- (void)GetSetInfoData:(NSMutableDictionary*)dict
+{
+    NSLog(@"dict:%@",dict);
+    NSString * text = [dict objectForKey:@"text"];
+    NSString * status = [dict objectForKey:@"status"];
+    NSLog(@"text:%@",text);
+    NSLog(@"status:%@",status);
+    
+    int isStatus = [status intValue];
+    if (isStatus == 0)
+    {
+        [self showAlertViewForTitle:text AndMessage:nil];
+    }else{
+//        [self showAlertViewForTitle:text AndMessage:nil];
+        NSString * TitleString;
+        int tag;
+        if (self.isChange==true)
+        {
+            TitleString = @"修改成功";
+            shareInfo.userModel.shopname = self.nameTF.text;
+            shareInfo.userModel.shopinfo = self.ShopTextView.text;
+            tag = 888;
+        }else{
+            TitleString = @"完善成功";
+            tag = 999;
+        }
+        UIAlertView * av = [[UIAlertView alloc]initWithTitle:TitleString message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        av.tag= tag;
+        [av show];
+    }
+    
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag==999) {
+        UINavigationController * Nav = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeViewControllerNav"];
+        
+        Nav.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        
+        [[NSUserDefaults standardUserDefaults]setObject:@"YES" forKey:@"FirstLogin"];
+        
+        [self presentViewController:Nav animated:YES completion:nil];
+    }
+    
+    if (alertView.tag==888) {
+    
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+#pragma mark  判断手机号码格式是否合法
+- (BOOL)isMobileNumber:(NSString *)mobileNum
+{
+    /**
+     * 手机号码
+     * 移动：134[0-8],135,136,137,138,139,150,151,157,158,159,182,187,188
+     * 联通：130,131,132,152,155,156,185,186
+     * 电信：133,1349,153,180,189
+     */
+    NSString * MOBILE = @"^1(3[0-9]|5[0-35-9]|8[025-9])\\d{8}$";
+    /**
+     10         * 中国移动：China Mobile
+     11         * 134[0-8],135,136,137,138,139,150,151,157,158,159,181,182,187,188
+     12         */
+    NSString * CM = @"^1(34[0-8]|(3[5-9]|5[017-9]|8[1278])\\d)\\d{7}$";
+    /**
+     15         * 中国联通：China Unicom
+     16         * 130,131,132,152,155,156,185,186
+     17         */
+    NSString * CU = @"^1(3[0-2]|5[256]|8[56])\\d{8}$";
+    /**
+     20         * 中国电信：China Telecom
+     21         * 133,1349,153,180,189
+     22         */
+    NSString * CT = @"^1((33|53|8[09])[0-9]|349)\\d{7}$";
+    /**
+     25         * 大录地区固话及小灵通
+     26         * 区号：010,020,021,022,023,024,025,027,028,029
+     27         * 号码：七位或八位
+     28         */
+    // NSString * PHS = @"^0(10|2[0-5789]|\\d{3})\\d{7,8}$";
+    
+    NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
+    NSPredicate *regextestcm = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CM];
+    NSPredicate *regextestcu = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CU];
+    NSPredicate *regextestct = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CT];
+    
+    if (([regextestmobile evaluateWithObject:mobileNum] == true)
+        || ([regextestcm evaluateWithObject:mobileNum] == true)
+        || ([regextestct evaluateWithObject:mobileNum] == true)
+        || ([regextestcu evaluateWithObject:mobileNum] == true))
+    {
+        return true;
+    }else
+    {
+        return false;
+    }
+}
+-(void)TouchPickButton:(UIButton*)pickButton
+{
+    [self AllTextFieldExit];
+    NSLog(@"pickButton.tag -> %ld",(long)pickButton.tag);
+    
+    [self.ProvinceTableView removeFromSuperview];
+    [self.CityTableView removeFromSuperview];
+    [self.AreaTableView removeFromSuperview];
+    
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 0, 0, 0, 0.5 });
+    
+    CGRect frame = pickButton.superview.frame;
+    if (pickButton.tag==1) {
+        
+        
+        self.ProvinceTableView= [[UITableView alloc]initWithFrame:CGRectMake(frame.origin.x,frame.origin.y+30,frame.size.width,180)];
+        
+        self.ProvinceTableView.delegate = self;
+        self.ProvinceTableView.dataSource = self;
+        [self.ProvinceTableView.layer setMasksToBounds:YES];
+        [self.ProvinceTableView.layer setBorderWidth:1.0];
+        [self.ProvinceTableView.layer setBorderColor:colorref];
+        self.ProvinceTableView.tableFooterView = [[UIView alloc] init];
+        touchPickInt = 0;
+        [self.view addSubview:self.ProvinceTableView];
+    }else if (pickButton.tag==2){
+        
+        
+        self.CityTableView = [[UITableView alloc]initWithFrame:CGRectMake(frame.origin.x,frame.origin.y+30,frame.size.width,180)];
+        self.CityTableView.delegate = self;
+        self.CityTableView.dataSource = self;
+        [self.CityTableView.layer setMasksToBounds:YES];
+        [self.CityTableView.layer setBorderWidth:1.0];
+        [self.CityTableView.layer setBorderColor:colorref];
+        self.CityTableView.tableFooterView = [[UIView alloc] init];
+        touchPickInt = 1;
+        [self.view addSubview:self.CityTableView];
+        
+    }else{
+        
+        self.AreaTableView= [[UITableView alloc]initWithFrame:CGRectMake(frame.origin.x,frame.origin.y+30,frame.size.width,180)];
+        self.AreaTableView.delegate = self;
+        self.AreaTableView.dataSource = self;
+        [self.AreaTableView.layer setMasksToBounds:YES];
+        [self.AreaTableView.layer setBorderWidth:1.0];
+        [self.AreaTableView.layer setBorderColor:colorref];
+        self.AreaTableView.tableFooterView = [[UIView alloc] init];
+        touchPickInt = 2;
+        [self.view addSubview: self.AreaTableView];
+    }
+    
+}
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (touchPickInt==0)
+    {
+        return provinces.count;
+    }else if (touchPickInt==1){
+        return cities.count;
+    }else{
+        return areas.count;
+    }
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    if (touchPickInt==0)
+    {
+        cell.textLabel.text = [[provinces objectAtIndex:indexPath.row] objectForKey:@"state"];
+    }else if (touchPickInt==1){
+        cell.textLabel.text = [[cities objectAtIndex:indexPath.row] objectForKey:@"state"];
+    }else if(touchPickInt==2){
+        cell.textLabel.text = [areas objectAtIndex:indexPath.row];
+    }
+    cell.textLabel.font = [UIFont systemFontOfSize:14];
+    return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self AllTextFieldExit];
+    if (touchPickInt==0)
+    {
+        provincesString = [[provinces objectAtIndex:indexPath.row] objectForKey:@"state"];
+        self.ProvinceTF.text = provincesString;
+        cities = [[provinces objectAtIndex:indexPath.row] objectForKey:@"cities"];
+        areas = [[cities objectAtIndex:0] objectForKey:@"areas"];
+        areasString = [areas objectAtIndex:0];
+        citiesString = [[cities objectAtIndex:0] objectForKey:@"state"];
+        self.CityTF.text = citiesString;
+        self.AreaTF.text =areasString;
+        
+        
+    }else if(touchPickInt==1){
+        citiesString = [[cities objectAtIndex:indexPath.row] objectForKey:@"state"];
+        self.CityTF.text = citiesString;
+        areas = [[cities objectAtIndex:indexPath.row] objectForKey:@"areas"];
+        
+        self.AreaTF.text = [areas objectAtIndex:0];
+    }else if(touchPickInt==2){
+        areasString = [areas objectAtIndex:indexPath.row];
+        self.AreaTF.text =areasString;
+        
+    }
+    [tableView removeFromSuperview];
+}
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 30;
+}
+#pragma mark 选择开户行
+-(void)TouchPickButton4:(UIButton*)button
+{
+    BankViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BankViewController"];
+    
+    vc.delegate = self;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+-(void)setBankName:(NSString*)bankName
+{
+    self.BankNameTF.text = bankName;
+}
+#pragma mark 更换头像
+-(void)TouchimageButton:(UIButton*)button
+{
+    UIActionSheet * actionSheet =
+    [[UIActionSheet alloc]initWithTitle:@"选择照片"
+                               delegate:nil
+                      cancelButtonTitle:@"取消"
+                 destructiveButtonTitle:@"拍照"
+                      otherButtonTitles:@"选取现有的",nil];
+    actionSheet.delegate=self;
+    
+    
+    [actionSheet showInView:self.view];
+
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (buttonIndex==0) {
+        
+        NSLog(@"您选择了拍照");
+        
+        UIImagePickerController * ipc = [[UIImagePickerController alloc]init];
+        
+        [ipc setSourceType:UIImagePickerControllerSourceTypeCamera];
+        
+        ipc.allowsEditing = YES;
+        
+        ipc.delegate = self;
+        
+        [self presentViewController:ipc animated:YES completion:nil];
+        
+        
+        
+    }else if (buttonIndex==1){
+        
+        NSLog(@"您选择了选取现有的");
+        
+        UIImagePickerController * ipc = [[UIImagePickerController alloc]init];
+        
+        [ipc setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        
+        ipc.allowsEditing = YES;
+        
+        ipc.delegate = self;
+        
+        
+        
+        [self presentViewController:ipc animated:YES completion:nil];
+        
+    }else{
+        
+        NSLog(@"您选择了取消");
+        
+    }
+};
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSLog(@"点击图片时调用");
+    NSLog(@"info = %@",info);
+    
+    
+    UIImage* original_image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    if (cream ==YES) {
+        UIImageWriteToSavedPhotosAlbum(original_image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+        
+    }
+    
+    [self.ImageButton setBackgroundImage:original_image forState:UIControlStateNormal];
+    
+    myImage = original_image;
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    NSLog(@"图片保存成功");
+}
+#pragma mark ShowAlertView
+-(void)showAlertViewForTitle:(NSString*)title AndMessage:(NSString*)message
+{
+    UIAlertView * av = [[UIAlertView alloc]initWithTitle:title message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    
+    [av show];
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

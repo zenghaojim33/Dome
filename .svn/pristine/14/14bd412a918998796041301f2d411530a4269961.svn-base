@@ -1,0 +1,32 @@
+//
+//  PrefixHeader.pch
+//  Dome
+//
+//  Created by BTW on 14/12/18.
+//  Copyright (c) 2014年 jenk. All rights reserved.
+//
+
+#ifdef __OBJC__
+
+#define PROVINCE_COMPONENT  0
+#define CITY_COMPONENT      1
+#define DISTRICT_COMPONENT  2
+
+#import "ShareInfo.h"
+#import "MBProgressHUD.h"
+#import "Tools.h"
+#import "JSONData.h"
+#import "HTTPKEY.h"
+#import "MJRefresh/MJRefresh.h"
+#import <CommonCrypto/CommonDigest.h>//MD5 C99 报错
+#import "SBJSON.h"
+#import "AFNetworkActivityIndicatorManager.h"
+#import "TMCache.h"
+#import "HTTPRequestManager.h"
+#import "SVProgressHUD.h"
+#import "UIImageView+WebCache.h"
+#endif
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+

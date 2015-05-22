@@ -1,0 +1,325 @@
+//
+//  CustomerViewController.m
+//  Dome
+//
+//  Created by BTW on 14/12/23.
+//  Copyright (c) 2014年 jenk. All rights reserved.
+//
+
+#import "CustomerViewController.h"
+#import "CustomerTableViewCell.h"
+#import "CustomerInfoViewController.h"
+#import "GuestModel.h"
+@interface CustomerViewController ()
+<
+    UITableViewDataSource,
+    UITableViewDelegate,
+    MJRefreshBaseViewDelegate
+>
+{
+    int page;
+    ShareInfo * shareInfo;
+    MBProgressHUD * HUD;
+    //刷新
+    MJRefreshHeaderView *_header;
+    MJRefreshFooterView *_footer;
+    
+    int totalCount;
+    NSOperationQueue *queue;
+    
+    BOOL isSearch;
+}
+
+
+@property (weak, nonatomic) IBOutlet UITableView *MyTableView;
+@property (weak, nonatomic) IBOutlet UITextField *MyTextField;
+@property(nonatomic,strong)NSMutableArray * searchArray;
+@end
+
+@implementation CustomerViewController
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    self.title = @"客户管理";
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"";
+    
+    self.navigationItem.backBarButtonItem = backItem;
+    
+    
+    
+}
+#pragma mark - 刷新的代理方法---进入下拉刷新\上拉加载更多都有可能调用这个方法
+- (void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView
+{
+    
+    if (refreshView == _footer) { // 上拉加载更多
+        page++;
+        
+        [self GetData];
+    
+    }else{
+        page = 1;
+        [self GetData];
+    }
+}
+- (void)endRefreshing:(NSNumber *)value
+{
+    // 结束刷新状态
+    [_footer endRefreshing];
+    if ([value boolValue]) {
+
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }
+}
+-(void)GetData
+{
+    shareInfo = [ShareInfo shareInstance];
+    
+    NSString * shopId = shareInfo.userModel.shopid;
+    NSNumber * number = [NSNumber numberWithInt:page];
+    NSNumber * pagesize = [NSNumber numberWithInt:10];
+    NSMutableDictionary * data = [[NSMutableDictionary alloc]initWithObjects:@[shopId,number,pagesize] forKeys:@[@"shopid",@"page",@"pagesize"]];
+    
+    SBJsonWriter * json = [[SBJsonWriter alloc]init];
+    NSString * jsonData = [json stringWithObject:data];
+    
+    NSString * link = [[NSString stringWithFormat:GetCustomer,jsonData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    HUD.labelText = @"正在获取数据";
+    [HTTPRequestManager getURL:link andParameter:nil onCompletion:^(id responseObject, NSError *error) {
+        
+        NSMutableDictionary * response = [responseObject copy];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self UpGuestData:response];
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+        });
+        
+    }];
+    
+    
+}
+-(void)UpGuestData:(NSMutableDictionary*)dict
+{
+    NSMutableArray * array = [NSMutableArray array];
+    
+    NSString * status = [dict objectForKey:@"status"];
+    int statusInt = [status intValue];
+    if (statusInt==false)
+    {
+        NSString * text = [dict objectForKey:@"text"];
+        [self showAlertViewForTitle:text AndMessage:nil];
+    }else{
+    NSMutableArray * data = [dict objectForKey:@"data"];
+    for (NSMutableDictionary * guestDict in data)
+    {
+        GuestModel * model = [[GuestModel alloc]init];
+        model.name = [guestDict objectForKey:@"name"];
+        model.phone = [guestDict objectForKey:@"phone"];
+        model.uid = [guestDict objectForKey:@"uid"];
+        model.createtime = [guestDict objectForKey:@"createtime"];
+        model.price = [guestDict objectForKey:@"price"];
+        [array addObject:model];
+    }
+        
+        if (page == 1)
+        {
+            self.guests = [NSMutableArray array];
+        }
+        
+        if (self.guests.count == 0)
+        {
+            self.guests = [NSMutableArray array];
+        }
+//        NSLog(@"array.count:%d",array.count);
+        if (array.count!=0)
+        {
+            for (GuestModel * model in array)
+            {
+                [self.guests addObject:model];
+            }
+        }
+        
+//    self.guests = array;
+    [Tools showPromptToView:self.view atPoint:self.view.center withText:@"加载完毕" duration:0.7];
+    [_header endRefreshing];
+    [_footer endRefreshing];
+
+    
+        
+    [self.MyTableView reloadData];
+    
+}
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    isSearch = NO;
+    self.guests = [NSMutableArray array];
+    page = 1;
+    [self GetData];
+    
+    _header = [MJRefreshHeaderView header];
+    _header.scrollView = self.MyTableView;
+    _header.delegate = self;
+
+    _footer = [MJRefreshFooterView footer];
+    _footer.scrollView = self.MyTableView;
+    _footer.delegate = self;
+    
+    self.MyTableView.delegate = self;
+    self.MyTableView.dataSource = self;
+    [self.MyTableView registerNib:[UINib nibWithNibName:@"CustomerTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
+    [self.MyTableView reloadData];
+    
+}
+- (IBAction)TextFieldExit:(UITextField *)sender
+{
+    self.searchArray = [NSMutableArray array];
+    
+    if (sender.text.length == 0) {
+        isSearch = NO;
+    }else{
+        isSearch = YES;
+        
+        for (int i = 0;i<self.guests.count; i++)
+        {
+            GuestModel * model = [self.guests objectAtIndex:i];
+            NSRange range = [model.name rangeOfString:sender.text];
+            if (range.location!=NSNotFound) {
+                [self.searchArray addObject:model];
+            }else {
+                
+            }
+            
+        }
+    }
+    
+    [sender resignFirstResponder];
+    [self.MyTableView reloadData];
+}
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (isSearch == YES) {
+        return self.searchArray.count;
+    }else{
+        return self.guests.count;
+
+    }
+    
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+    
+    static NSString *CellIdentifier = @"Cell" ;
+    
+    
+    CustomerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell.layer.shadowColor = [UIColor blackColor].CGColor;
+    cell.layer.shadowOffset = CGSizeMake(1, 1);
+    cell.layer.shadowOpacity = 0.2;
+    
+    GuestModel * model;
+    NSLog(@"guests:%lu indexpath.row:%ld",(unsigned long)self.guests.count,(long)indexPath.row);
+    if (isSearch == YES)
+    {
+        model = [self.searchArray objectAtIndex:indexPath.row];
+    }else{
+        model = [self.guests objectAtIndex:indexPath.row];
+    }
+    cell.selectionStyle = UITableViewCellAccessoryNone;
+    cell.GuestName.text = [NSString stringWithFormat:@"%@",model.name];
+    cell.LastTime.text = [NSString stringWithFormat:@"最后下单时间:%@",model.createtime];
+    float price = [model.price floatValue];
+    cell.AllPrice.text = [NSString stringWithFormat:@"¥%.2f",price];
+    cell.phone.text = model.phone;
+    
+//    cell.layer.shadowColor = [UIColor blackColor].CGColor;
+//    cell.layer.shadowOffset = CGSizeMake(1, 1);
+//    cell.layer.shadowOpacity = 0.2;
+    return cell;
+}
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
+}
+#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Touch %ld",(long)indexPath.row);
+    GuestModel * model = [self.guests objectAtIndex:indexPath.row];
+
+    
+    CustomerInfoViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomerInfoViewController"];
+    vc.title = self.title;
+    vc.guestModel = model;
+    [self.navigationController pushViewController:vc animated:YES];
+
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+#pragma mark ShowAlertView
+-(void)showAlertViewForTitle:(NSString*)title AndMessage:(NSString*)message
+{
+    UIAlertView * av = [[UIAlertView alloc]initWithTitle:title message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    
+    [av show];
+}
+-(void)dealloc
+{
+    [ _header free ];
+    [ _footer free ];
+}
+- (IBAction)OpenWX:(id)sender
+{
+    NSURL *url = [NSURL URLWithString:@"weixin://"];
+    
+    // url : check there is app that reflects by this
+    
+    if([[UIApplication sharedApplication] canOpenURL:url]){
+
+        [[UIApplication sharedApplication] openURL:url];
+        
+    }else{
+
+        UIAlertView * av = [[UIAlertView alloc]initWithTitle:@"你的设备尚未安装微信" message:@"暂时无法使用分享功能" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"前往下载", nil];
+        av.tag = 999;
+        [av show];
+    }
+
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag==999&&buttonIndex==1)
+    {
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"https://appsto.re/cn/S8gTy.i"]];
+    }
+}
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

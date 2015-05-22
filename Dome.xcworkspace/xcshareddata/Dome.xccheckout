@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FBE01104-FAC9-43F1-B43F-A3E4F31B52D0</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Dome</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>88d834ef-9d43-dd44-88b1-1ecdcf9389be++1358</key>
+		<string>http://beautyway.com.cn:9090/svn/doshop_ios/Dome(1)</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Dome.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>88d834ef-9d43-dd44-88b1-1ecdcf9389be++1358</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>88d834ef-9d43-dd44-88b1-1ecdcf9389be++1358</key>
+		<string>http://beautyway.com.cn:9090/svn/doshop_ios</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>http://beautyway.com.cn:9090/svn/doshop_ios/Dome(1)/Dome.xcworkspace</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>88d834ef-9d43-dd44-88b1-1ecdcf9389be++1358</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>88d834ef-9d43-dd44-88b1-1ecdcf9389be++1358</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Dome(1)</string>
+		</dict>
+	</array>
+</dict>
+</plist>

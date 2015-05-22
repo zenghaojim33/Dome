@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7515.2" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7512"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="110" id="KGk-i7-Jjw" customClass="RushOrdersTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kae-e2-n73">
+                        <rect key="frame" x="0.0" y="1" width="320" height="97"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RushOrdersCellBGView.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="hJl-WV-lXt">
+                                <rect key="frame" x="0.0" y="1" width="320" height="97"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXz-bb-A1b">
+                                <rect key="frame" x="15" y="12" width="243" height="21"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="2qR-3P-9cg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8y-NE-xNL">
+                                <rect key="frame" x="15" y="40" width="243" height="21"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="OXL-Uz-z6k"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnO-8b-CUN">
+                                <rect key="frame" x="15" y="69" width="243" height="21"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="OSF-FI-bkk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eCq-uy-0bq">
+                                <rect key="frame" x="261" y="43" width="51" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="51" id="Wrh-6D-dGX"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="抢单button.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="X0x-vx-OOX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="w8y-NE-xNL" firstAttribute="top" secondItem="bXz-bb-A1b" secondAttribute="bottom" constant="7" id="2c3-kx-tbB"/>
+                            <constraint firstItem="bXz-bb-A1b" firstAttribute="top" secondItem="Kae-e2-n73" secondAttribute="top" constant="12" id="FSR-fU-eJP"/>
+                            <constraint firstItem="nnO-8b-CUN" firstAttribute="leading" secondItem="Kae-e2-n73" secondAttribute="leading" constant="15" id="G3H-Sj-omF"/>
+                            <constraint firstItem="hJl-WV-lXt" firstAttribute="leading" secondItem="Kae-e2-n73" secondAttribute="leading" id="IMi-Fk-jmr"/>
+                            <constraint firstAttribute="bottom" secondItem="hJl-WV-lXt" secondAttribute="bottom" constant="-1" id="NEL-90-CNC"/>
+                            <constraint firstItem="eCq-uy-0bq" firstAttribute="leading" secondItem="w8y-NE-xNL" secondAttribute="trailing" constant="3" id="UOF-wx-saY"/>
+                            <constraint firstItem="bXz-bb-A1b" firstAttribute="leading" secondItem="Kae-e2-n73" secondAttribute="leading" constant="15" id="Ysd-W1-twi"/>
+                            <constraint firstItem="eCq-uy-0bq" firstAttribute="top" secondItem="Kae-e2-n73" secondAttribute="top" constant="43" id="Zrt-UO-ZDG"/>
+                            <constraint firstItem="hJl-WV-lXt" firstAttribute="top" secondItem="Kae-e2-n73" secondAttribute="top" constant="1" id="aeP-f7-ajo"/>
+                            <constraint firstAttribute="trailing" secondItem="nnO-8b-CUN" secondAttribute="trailing" constant="62" id="hh2-dA-ehr"/>
+                            <constraint firstAttribute="bottom" secondItem="eCq-uy-0bq" secondAttribute="bottom" constant="35" id="jdL-Lb-vXm"/>
+                            <constraint firstItem="w8y-NE-xNL" firstAttribute="leading" secondItem="Kae-e2-n73" secondAttribute="leading" constant="15" id="jdt-Z7-zjA"/>
+                            <constraint firstAttribute="trailing" secondItem="bXz-bb-A1b" secondAttribute="trailing" constant="62" id="sxA-SS-v7C"/>
+                            <constraint firstAttribute="trailing" secondItem="hJl-WV-lXt" secondAttribute="trailing" id="tfm-rr-aZe"/>
+                            <constraint firstAttribute="trailing" secondItem="eCq-uy-0bq" secondAttribute="trailing" constant="8" id="v01-Dx-QWb"/>
+                            <constraint firstItem="nnO-8b-CUN" firstAttribute="top" secondItem="w8y-NE-xNL" secondAttribute="bottom" constant="8" id="xS6-Lc-AC6"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="Kae-e2-n73" secondAttribute="bottom" constant="11" id="UYA-Md-cCY"/>
+                    <constraint firstAttribute="trailing" secondItem="Kae-e2-n73" secondAttribute="trailing" id="VcA-dH-gbL"/>
+                    <constraint firstItem="Kae-e2-n73" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="WfF-r7-Pf5"/>
+                    <constraint firstItem="Kae-e2-n73" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="d5b-sc-wNX"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="OrdersInfo" destination="w8y-NE-xNL" id="cBU-el-2jU"/>
+                <outlet property="OrdersIntegral" destination="nnO-8b-CUN" id="tgp-Ey-BlF"/>
+                <outlet property="OrdersTitle" destination="bXz-bb-A1b" id="GLa-Uf-A4E"/>
+            </connections>
+            <point key="canvasLocation" x="310" y="289"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="RushOrdersCellBGView.jpg" width="640" height="168"/>
+        <image name="抢单button.png" width="152" height="50"/>
+    </resources>
+</document>

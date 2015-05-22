@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6724" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="120" id="KGk-i7-Jjw" customClass="OrderTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CellBGView.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="zif-Fi-CUt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EZa-0S-pNT">
+                        <rect key="frame" x="8" y="10" width="93" height="93"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="93" id="g6k-fW-Pb3"/>
+                            <constraint firstAttribute="width" constant="93" id="mWH-Nf-5pS"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单号:54fead440571" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8n-MZ-MDC">
+                        <rect key="frame" x="109" y="11" width="203" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="5CQ-sz-Gwf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lady'sjoy奢侈系列24小时保湿霜" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Sd-LJ-EEE">
+                        <rect key="frame" x="109" y="30" width="204" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="wjg-Iv-f2s"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥ 219.77 x 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCw-4x-gem">
+                        <rect key="frame" x="108" y="64" width="204" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="4sL-8e-aoB"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.67785274620000002" green="0.031397764850000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下单时间:2015-03-10 04:24" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qmp-gu-m2I">
+                        <rect key="frame" x="108" y="81" width="204" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="7y6-wL-CUa"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="Qmp-gu-m2I" firstAttribute="top" secondItem="0Sd-LJ-EEE" secondAttribute="bottom" constant="31" id="0SY-TV-n6M"/>
+                    <constraint firstItem="0Sd-LJ-EEE" firstAttribute="leading" secondItem="EZa-0S-pNT" secondAttribute="trailing" constant="8" id="4xl-Lx-8ZP"/>
+                    <constraint firstItem="zif-Fi-CUt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="6Pb-Fd-K81"/>
+                    <constraint firstItem="EZa-0S-pNT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="A3j-gv-CK2"/>
+                    <constraint firstItem="KCw-4x-gem" firstAttribute="leading" secondItem="EZa-0S-pNT" secondAttribute="trailing" constant="7" id="CfN-6S-EmU"/>
+                    <constraint firstItem="V8n-MZ-MDC" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="DGr-Mz-V16"/>
+                    <constraint firstAttribute="trailing" secondItem="zif-Fi-CUt" secondAttribute="trailing" id="FUU-em-GdJ"/>
+                    <constraint firstAttribute="bottom" secondItem="zif-Fi-CUt" secondAttribute="bottom" constant="10" id="MlS-PD-bpf"/>
+                    <constraint firstItem="EZa-0S-pNT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Opl-qg-1dl"/>
+                    <constraint firstAttribute="trailing" secondItem="KCw-4x-gem" secondAttribute="trailing" constant="8" id="RLP-WD-3eK"/>
+                    <constraint firstItem="KCw-4x-gem" firstAttribute="top" secondItem="0Sd-LJ-EEE" secondAttribute="bottom" constant="14" id="RqT-of-Pvk"/>
+                    <constraint firstAttribute="trailing" secondItem="Qmp-gu-m2I" secondAttribute="trailing" constant="8" id="XgI-2W-W6J"/>
+                    <constraint firstItem="Qmp-gu-m2I" firstAttribute="leading" secondItem="EZa-0S-pNT" secondAttribute="trailing" constant="7" id="agR-7r-dwH"/>
+                    <constraint firstItem="zif-Fi-CUt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cbD-5r-MaB"/>
+                    <constraint firstItem="V8n-MZ-MDC" firstAttribute="leading" secondItem="EZa-0S-pNT" secondAttribute="trailing" constant="8" id="dss-sO-sRy"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="0Sd-LJ-EEE" secondAttribute="trailing" constant="-1" id="mBZ-pP-31s"/>
+                    <constraint firstItem="V8n-MZ-MDC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="pKw-jU-oUe"/>
+                    <constraint firstItem="0Sd-LJ-EEE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="22" id="q3O-zT-Pti"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="OrdersImageView" destination="EZa-0S-pNT" id="TTn-XI-hck"/>
+                <outlet property="OrdersLabel" destination="0Sd-LJ-EEE" id="hso-HC-s0D"/>
+                <outlet property="OrdersLastTime" destination="Qmp-gu-m2I" id="Bpk-qy-L12"/>
+                <outlet property="OrdersPrice" destination="KCw-4x-gem" id="47U-Ze-cvd"/>
+                <outlet property="OrdersTitle" destination="V8n-MZ-MDC" id="8fV-Mp-9YQ"/>
+            </connections>
+            <point key="canvasLocation" x="516" y="409"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="CellBGView.jpg" width="640" height="75"/>
+    </resources>
+</document>

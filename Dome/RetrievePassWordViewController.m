@@ -1,0 +1,269 @@
+//
+//  RetrievePassWordViewController.m
+//  Dome
+//
+//  Created by BTW on 14/12/25.
+//  Copyright (c) 2014年 jenk. All rights reserved.
+//
+
+#import "RetrievePassWordViewController.h"
+//发送短信验证码接口
+#define sendSmsCode @"http://www.beautyway.cn/json/index.aspx?aim=sendmsg&number=%@&desc=欢迎使用都美,您的验证码是"
+
+@interface RetrievePassWordViewController ()
+{
+    NSString * smsCode;
+    NSString * phoneNumber;
+    MBProgressHUD * HUD;
+}
+@property (weak, nonatomic) IBOutlet UIView *BGView;
+@property (weak, nonatomic) IBOutlet UITextField *PhoneNumberTF;
+@property (weak, nonatomic) IBOutlet UITextField *PassWordTF;
+@property (weak, nonatomic) IBOutlet UITextField *PassWord2TF;
+@property (weak, nonatomic) IBOutlet UITextField *CodeTF;
+@property (weak, nonatomic) IBOutlet UIButton *CodeBth;
+@property(nonatomic)int times;
+@property(nonatomic,weak)NSTimer * timer;
+@end
+
+@implementation RetrievePassWordViewController
+- (IBAction)TFExit:(UITextField *)sender {
+    [sender resignFirstResponder];
+}
+-(void)AllTFExit
+{
+    [self.PassWordTF resignFirstResponder];
+    [self.PassWord2TF resignFirstResponder];
+    [self.PhoneNumberTF resignFirstResponder];
+    [self.CodeTF resignFirstResponder];
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    self.title = @"找回密码";
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"";
+    
+    self.navigationItem.backBarButtonItem = backItem;
+    
+}
+- (IBAction)AddCode:(UIButton *)sender {
+    if (self.PhoneNumberTF.text.length==0) {
+
+        [self showAlertViewForMessage:@"请输入手机号码"];
+    }else{
+        BOOL b = [self isMobileNumber:self.PhoneNumberTF.text];
+        if (b == NO) {
+            [self showAlertViewForMessage:@"手机号码不合法"];
+        }else{
+            self.PhoneNumberTF.userInteractionEnabled = NO;
+            [self AllTFExit];
+            self.CodeBth.userInteractionEnabled = NO;
+            self.times = 60;
+            self.timer =[NSTimer scheduledTimerWithTimeInterval:1
+                                                         target:self
+                                                       selector:@selector(animate:)
+                                                       userInfo:nil
+                                                        repeats:YES];
+            
+        
+            NSMutableDictionary * data = [[NSMutableDictionary alloc]initWithObjects:@[self.PhoneNumberTF.text] forKeys:@[@"phone"]];
+            
+            SBJsonWriter * json = [[SBJsonWriter alloc]init];
+            NSString * jsonData = [json stringWithObject:data];
+            NSLog(@"jsonData:%@",jsonData);
+            NSString * link = [[NSString stringWithFormat:GetSmsCodel,jsonData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSLog(@"%@",link);
+            HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            HUD.labelText = @"正在获取数据";
+            [HTTPRequestManager getURL:link andParameter:nil onCompletion:^(id responseObject, NSError *error) {
+                
+                NSMutableDictionary * response = [responseObject copy];
+                [self UpData:response];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    
+                });
+                
+            }];
+            
+        }
+    }
+}
+-(void)UpData:(NSMutableDictionary*)dict
+{
+    NSString * status = [dict objectForKey:@"status"];
+    int statusInt = [status intValue];
+    if (statusInt == true)
+    {
+        [self showAlertViewForMessage:@"发送成功"];
+    }else{
+        NSString * text = [dict objectForKey:@"text"];
+        [self showAlertViewForMessage:text];
+    }
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag==666) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+-(void)animate:(id)sender
+{
+    self.times --;
+    [self.CodeBth setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    [self.PhoneNumberTF setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    [self.CodeBth setTitle:[NSString stringWithFormat:@"重新获取(%d)",self.times] forState:UIControlStateNormal];
+    [self.CodeBth setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    if (self.times==0) {
+        self.CodeBth.userInteractionEnabled = YES;
+        [self.CodeBth setTitle:@"获取验证码" forState:UIControlStateNormal];
+        [self.timer invalidate];
+        [self.CodeBth setBackgroundColor:[UIColor colorWithRed:186/255.0 green:47/255.0 blue:54/255.0 alpha:1]];
+        self.PhoneNumberTF.userInteractionEnabled = YES;
+        [self.PhoneNumberTF setBackgroundColor:[UIColor whiteColor]];
+         self.PhoneNumberTF.textColor = [UIColor blackColor];
+        [self.CodeBth setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.timer invalidate];
+    }
+}
+- (IBAction)TouchDoneButton:(UIButton *)sender {
+    if (![self.PhoneNumberTF.text isEqualToString:self.PhoneNumberTF.text]) {
+        [self showAlertViewForMessage:@"请输入正确的手机号码"];
+    }else if(![self.PassWordTF.text isEqualToString:self.PassWord2TF.text]){
+        [self showAlertViewForMessage:@"两次输入的密码不相同"];
+    }else{
+//        NSLog(@"PhoneNumber:%@",self.PhoneNumberTF.text);
+//        NSLog(@"PassWord:%@",self.PassWordTF.text);
+//        NSLog(@"Code:%@",self.CodeTF.text);
+        
+
+        if(self.PassWordTF.text.length<6||self.PassWord2TF.text.length<6)
+        {
+            [self showAlertViewForTitle:@"密码至少6位" AndMessage:nil];
+        }else{
+        
+            NSMutableDictionary * data = [[NSMutableDictionary alloc]initWithObjects:@[self.PhoneNumberTF.text,self.CodeTF.text,self.PassWordTF.text,self.PassWord2TF.text] forKeys:@[@"phone",@"code",@"password",@"passwordagain"]];
+        
+            SBJsonWriter * json = [[SBJsonWriter alloc]init];
+            NSString * jsonData = [json stringWithObject:data];
+            NSLog(@"jsonData:%@",jsonData);
+            NSString * link = [[NSString stringWithFormat:RetrievePassWord,jsonData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSLog(@"%@",link);
+            HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            HUD.labelText = @"正在获取数据";
+            [HTTPRequestManager getURL:link andParameter:nil onCompletion:^(id responseObject, NSError *error) {
+                
+                NSMutableDictionary * response = [responseObject copy];
+                [self ChangePassWord:response];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    
+                });
+                
+            }];        }
+    }
+}
+- (void)ChangePassWord:(NSMutableDictionary*)dict
+{
+    NSString * status = [dict objectForKey:@"status"];
+    int statusInt = [status intValue];
+    if (statusInt == true)
+    {
+        UIAlertView * av = [[UIAlertView alloc]initWithTitle:@"修改成功" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        av.tag = 666;
+        [av show];
+    }else{
+        NSString * text = [dict objectForKey:@"text"];
+        [self showAlertViewForMessage:text];
+    }
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.BGView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.BGView.layer.shadowOffset = CGSizeMake(1, 1);
+    self.BGView.layer.shadowOpacity = 0.2;
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+#pragma mark  判断手机号码格式是否合法
+- (BOOL)isMobileNumber:(NSString *)mobileNum
+{
+    /**
+     * 手机号码
+     * 移动：134[0-8],135,136,137,138,139,150,151,157,158,159,182,187,188
+     * 联通：130,131,132,152,155,156,185,186
+     * 电信：133,1349,153,180,189
+     */
+    NSString * MOBILE = @"^1(3[0-9]|5[0-35-9]|8[025-9])\\d{8}$";
+    /**
+     10         * 中国移动：China Mobile
+     11         * 134[0-8],135,136,137,138,139,150,151,157,158,159,181,182,187,188
+     12         */
+    NSString * CM = @"^1(34[0-8]|(3[5-9]|5[017-9]|8[1278])\\d)\\d{7}$";
+    /**
+     15         * 中国联通：China Unicom
+     16         * 130,131,132,152,155,156,185,186
+     17         */
+    NSString * CU = @"^1(3[0-2]|5[256]|8[56])\\d{8}$";
+    /**
+     20         * 中国电信：China Telecom
+     21         * 133,1349,153,180,189
+     22         */
+    NSString * CT = @"^1((33|53|8[09])[0-9]|349)\\d{7}$";
+    /**
+     25         * 大录地区固话及小灵通
+     26         * 区号：010,020,021,022,023,024,025,027,028,029
+     27         * 号码：七位或八位
+     28         */
+    // NSString * PHS = @"^0(10|2[0-5789]|\\d{3})\\d{7,8}$";
+    
+    NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
+    NSPredicate *regextestcm = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CM];
+    NSPredicate *regextestcu = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CU];
+    NSPredicate *regextestct = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CT];
+    
+    if (([regextestmobile evaluateWithObject:mobileNum] == YES)
+        || ([regextestcm evaluateWithObject:mobileNum] == YES)
+        || ([regextestct evaluateWithObject:mobileNum] == YES)
+        || ([regextestcu evaluateWithObject:mobileNum] == YES))
+    {
+        return YES;
+    }else
+    {
+        return NO;
+    }
+}
+#pragma mark ShowAlertView
+-(void)showAlertViewForTitle:(NSString*)title AndMessage:(NSString*)message
+{
+    UIAlertView * av = [[UIAlertView alloc]initWithTitle:title message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    
+    [av show];
+}
+
+
+-(void)showAlertViewForMessage:(NSString*)message
+{
+    UIAlertView * av = [[UIAlertView alloc]initWithTitle:nil message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [av show];
+}
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

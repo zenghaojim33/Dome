@@ -82,6 +82,8 @@
 		15CEF1571B130CE300D1102A /* ChartTransformerHorizontalBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CEF1111B130CE300D1102A /* ChartTransformerHorizontalBarChart.swift */; };
 		15CEF1581B130CE300D1102A /* ChartUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CEF1121B130CE300D1102A /* ChartUtils.swift */; };
 		15CEF1591B130CE300D1102A /* ChartViewPortHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CEF1131B130CE300D1102A /* ChartViewPortHandler.swift */; };
+		15CEF15C1B13277E00D1102A /* SellerContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CEF15B1B13277E00D1102A /* SellerContainerViewController.m */; };
+		15CEF15F1B13278F00D1102A /* BuyerContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CEF15E1B13278F00D1102A /* BuyerContainerViewController.m */; };
 		3B13016E1A7CAE26005AF639 /* myIncomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B13016C1A7CAE26005AF639 /* myIncomTableViewCell.m */; };
 		3B13016F1A7CAE26005AF639 /* myIncomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B13016D1A7CAE26005AF639 /* myIncomTableViewCell.xib */; };
 		3B16F4EA1A42D2A500601FA1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B16F4E91A42D2A500601FA1 /* main.m */; };
@@ -581,6 +583,10 @@
 		15CEF1111B130CE300D1102A /* ChartTransformerHorizontalBarChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartTransformerHorizontalBarChart.swift; sourceTree = "<group>"; };
 		15CEF1121B130CE300D1102A /* ChartUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartUtils.swift; sourceTree = "<group>"; };
 		15CEF1131B130CE300D1102A /* ChartViewPortHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewPortHandler.swift; sourceTree = "<group>"; };
+		15CEF15A1B13277E00D1102A /* SellerContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SellerContainerViewController.h; sourceTree = "<group>"; };
+		15CEF15B1B13277E00D1102A /* SellerContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SellerContainerViewController.m; sourceTree = "<group>"; };
+		15CEF15D1B13278F00D1102A /* BuyerContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyerContainerViewController.h; sourceTree = "<group>"; };
+		15CEF15E1B13278F00D1102A /* BuyerContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyerContainerViewController.m; sourceTree = "<group>"; };
 		3B0E18BD1A846901000D4CFD /* HTTPKEY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPKEY.h; sourceTree = "<group>"; };
 		3B13016B1A7CAE26005AF639 /* myIncomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myIncomTableViewCell.h; sourceTree = "<group>"; };
 		3B13016C1A7CAE26005AF639 /* myIncomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myIncomTableViewCell.m; sourceTree = "<group>"; };
@@ -1210,6 +1216,7 @@
 		156404DF1B05A8C400C63D6C /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				3BD8362A1A49012800520BDD /* libqrencode */,
 				15CEF0C61B130CE300D1102A /* Charts */,
 				3BCCB4E51A8B3808002F6BC6 /* SBJson */,
 				3B808AD11AEDC93400664B72 /* IQKeyBoardManager */,
@@ -2371,9 +2378,12 @@
 		3BD836291A48FE0B00520BDD /* 我要推广 */ = {
 			isa = PBXGroup;
 			children = (
-				3BD8362A1A49012800520BDD /* libqrencode */,
 				3BD836261A48FDC500520BDD /* ExtensionViewController.h */,
 				3BD836271A48FDC500520BDD /* ExtensionViewController.m */,
+				15CEF15A1B13277E00D1102A /* SellerContainerViewController.h */,
+				15CEF15B1B13277E00D1102A /* SellerContainerViewController.m */,
+				15CEF15D1B13278F00D1102A /* BuyerContainerViewController.h */,
+				15CEF15E1B13278F00D1102A /* BuyerContainerViewController.m */,
 			);
 			name = "我要推广";
 			sourceTree = "<group>";
@@ -2396,7 +2406,8 @@
 				3BD836371A49012800520BDD /* split.c */,
 				3BD836381A49012800520BDD /* split.h */,
 			);
-			path = libqrencode;
+			name = libqrencode;
+			path = Dome/libqrencode;
 			sourceTree = "<group>";
 		};
 		3BD836471A49056B00520BDD /* 抢单广场 */ = {
@@ -2864,6 +2875,7 @@
 				15CEF1371B130CE300D1102A /* PieChartData.swift in Sources */,
 				156404E41B05ABAC00C63D6C /* HTTPRequestManager.m in Sources */,
 				3BBB851E1A593813006C8A28 /* BankViewController.m in Sources */,
+				15CEF15C1B13277E00D1102A /* SellerContainerViewController.m in Sources */,
 				15CEF1471B130CE300D1102A /* ChartXAxisRendererHorizontalBarChart.swift in Sources */,
 				15CEF1241B130CE300D1102A /* ChartLimitLine.swift in Sources */,
 				3BD9608C1A43B69200F41F66 /* LoginViewController.m in Sources */,
@@ -2926,6 +2938,7 @@
 				3B3456C21A48F94300C7AF4D /* MyIncomeViewController.m in Sources */,
 				15CEF1281B130CE300D1102A /* BarChartData.swift in Sources */,
 				3BCCB4F61A8B3808002F6BC6 /* SBJsonBase.m in Sources */,
+				15CEF15F1B13278F00D1102A /* BuyerContainerViewController.m in Sources */,
 				3BCCB4F31A8B3808002F6BC6 /* NSObject+SBJSON.m in Sources */,
 				3BD429231A4A53200081A6EC /* CustomerInfoViewController.m in Sources */,
 				15CEF1461B130CE300D1102A /* ChartXAxisRendererBarChart.swift in Sources */,

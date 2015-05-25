@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "UserModel.h"
+/**
+ *  储存用户信息
+ */
 
 @interface ShareInfo : NSObject
 

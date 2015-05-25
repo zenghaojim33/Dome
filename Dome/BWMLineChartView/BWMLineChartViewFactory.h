@@ -7,9 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Charts/Charts.h>
-#import <Charts/Charts-Swift.h>
-//#import "Dome-Swift.h"
+#import "Dome-Swift.h"
 
 /** BWMLineChartViewFactory用于顺序创建LineChartView */
 @interface BWMLineChartViewFactory : NSObject

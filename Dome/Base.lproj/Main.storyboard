@@ -4006,10 +4006,12 @@
                             </containerView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0Ut-B0-pv3">
                                 <rect key="frame" x="16" y="72" width="288" height="29"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
+                                    <segment title="推广都商"/>
+                                    <segment title="推广都美商城"/>
                                 </segments>
+                                <color key="tintColor" red="0.6589528093" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="switchContainerView:" destination="cRG-9j-OJ7" eventType="valueChanged" id="eoD-pt-KPJ"/>
                                 </connections>
@@ -5245,6 +5247,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="TouchShareButton:" destination="1Li-yb-LA0" eventType="touchUpInside" id="3Qy-pg-1bU"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Id-oH-VDo">
                                 <rect key="frame" x="175" y="385" width="129" height="34"/>
@@ -5252,6 +5257,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="TouchQRCodeButton:" destination="1Li-yb-LA0" eventType="touchUpInside" id="kH5-zt-eg2"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -5278,6 +5286,9 @@
                         </variation>
                     </view>
                     <toolbarItems/>
+                    <connections>
+                        <outlet property="backgroundView" destination="YOo-kI-Sam" id="VpK-YT-ptp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oCE-mc-js7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -5302,10 +5313,10 @@
             </objects>
             <point key="canvasLocation" x="5069" y="108"/>
         </scene>
-        <!--Seller Container View Controller-->
+        <!--Buyer Container View Controller-->
         <scene sceneID="VOi-IG-H5z">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="0dX-w5-V9j" customClass="SellerContainerViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="0dX-w5-V9j" customClass="BuyerContainerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Goe-x2-1iP"/>
                         <viewControllerLayoutGuide type="bottom" id="sY6-3r-tDw"/>
@@ -5349,6 +5360,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="TouchShareButton:" destination="0dX-w5-V9j" eventType="touchUpInside" id="rpW-Lx-LFp"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qks-87-Qg6">
                                 <rect key="frame" x="175" y="385" width="129" height="34"/>
@@ -5356,6 +5370,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="TouchQRCodeButton:" destination="0dX-w5-V9j" eventType="touchUpInside" id="w4r-h4-7fw"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

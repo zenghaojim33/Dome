@@ -107,6 +107,7 @@ enum {
         case 1:
             self.buyerContainerView.hidden = NO;
             self.sellerContainerView.hidden = YES;
+            break;
         default:
             break;
     }

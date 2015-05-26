@@ -12,10 +12,25 @@
 #import "UMSocialWechatHandler.h"
 #import "UMSocial.h"
 
+@interface SellerContainerViewController()<UMSocialUIDelegate>
 
+@property(nonatomic,strong)NSString * codeStr;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundView;
+@property(nonatomic,strong)UIImageView * QRCodeView;
+enum {
+    qr_margin = 3
+};
+@end
 
 
 @implementation SellerContainerViewController
+
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self initCode];
+}
 
 -(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
 {
@@ -29,26 +44,28 @@
         
         //Because November is luck month
     }
+    
 }
 #pragma mark 分享链接
--(void)TouchShareButton:(UIButton*)button
+-(IBAction)TouchShareButton:(id)sender
 {
     //微信网页类型
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
     NSString *shareText = @"都商二维码";             //分享内嵌文字
-    UIImage *shareImage =self.ImageView.image;          //分享内嵌图片
+    UIImage *shareImage =self.QRCodeView.image;          //分享内嵌图片
     
-    [UMSocialData defaultData].extConfig.wechatSessionData.url = codeStr;
-    [UMSocialData defaultData].extConfig.wechatTimelineData.url = codeStr;
-    [UMSocialData defaultData].extConfig.qqData.url = codeStr;
-    [UMSocialData defaultData].extConfig.qzoneData.url = codeStr;
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = _codeStr;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = _codeStr;
+    [UMSocialData defaultData].extConfig.qqData.url = _codeStr;
+    [UMSocialData defaultData].extConfig.qzoneData.url = _codeStr;
     
     //如果得到分享完成回调，需要设置delegate为self
     [UMSocialSnsService presentSnsIconSheetView:self appKey:@"54a350bffd98c51f0900012d" shareText:shareText shareImage:shareImage shareToSnsNames:@[UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite,UMShareToTencent,UMShareToQQ,UMShareToQzone,UMShareToEmail,UMShareToSms] delegate:self];
     
 }
 #pragma mark 分享二维码
--(void)TouchQRCodeButton:(UIButton*)button
+
+-(IBAction)TouchQRCodeButton:(id)sender
 {
     
     //    UIImage * iamge = [self getImageFromView:self.ImageView];
@@ -58,42 +75,50 @@
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeImage;
     
     NSString *shareText = @"都商二维码";             //分享内嵌文字
-    UIImage *shareImage = [self getImageFromView:self.ImageView];          //分享内嵌图片
-    [UMSocialData defaultData].extConfig.qqData.url = codeStr;
-    [UMSocialData defaultData].extConfig.qzoneData.url = codeStr;
+    UIImage *shareImage = [self getImageFromView:self.QRCodeView];          //分享内嵌图片
+    [UMSocialData defaultData].extConfig.qqData.url = _codeStr;
+    [UMSocialData defaultData].extConfig.qzoneData.url = _codeStr;
     
     //如果得到分享完成回调，需要设置delegate为self
     [UMSocialSnsService presentSnsIconSheetView:self appKey:@"54a350bffd98c51f0900012d" shareText:shareText shareImage:shareImage shareToSnsNames:@[UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite,UMShareToTencent,UMShareToQQ,UMShareToQzone,UMShareToEmail,UMShareToSms] delegate:self];
     
 }
+
+#pragma mark 初始化二维码
+-(void)initCode
+{
+    
+    ShareInfo * userifo = [ShareInfo shareInstance];
+    _codeStr = [NSString stringWithFormat:RQCode,userifo.userModel.userID];
+    
+    UIImage * Code = [self qrImageForString:_codeStr imageSize:self.backgroundView.frame.size.width];
+    UIImage * QRCodeImage = [self addImage:[UIImage imageNamed:@"CodeBG288.jpg"] toImage:Code];
+    
+    
+    
+    
+    self.backgroundView.image = QRCodeImage;
+    
+    
+}
+
+
+#pragma mark ---- QRCode Generation
+
+
 -(UIImage *)getImageFromView:(UIView *)view{
     UIGraphicsBeginImageContext(view.bounds.size);
+    
+    
+    
     [view.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
 }
-#pragma mark 初始化二维码
--(void)initCode
-{
-    
-    
-    self.ImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.BGView.frame.size.width, self.BGView.frame.size.height)];
-    
-    
-    codeStr = [NSString stringWithFormat:RQCode,shareInfo.userModel.userID];
-    
-    UIImage * Code = [ExtensionViewController qrImageForString:codeStr imageSize:self.ImageView.frame.size.width];
-    QRCodeIMG = [self addImage:[UIImage imageNamed:@"CodeBG288.jpg"] toImage:Code];
-    
-    
-    
-    
-    self.ImageView.image = QRCodeIMG;
-    
-    [self.BGView addSubview:self.ImageView];
-}
-+ (void)drawQRCode:(QRcode *)code context:(CGContextRef)ctx size:(CGFloat)size {
+
+
+- (void)drawQRCode:(QRcode *)code context:(CGContextRef)ctx size:(CGFloat)size {
     unsigned char *data = 0;
     int width;
     data = code->data;
@@ -114,9 +139,11 @@
     }
     CGContextFillPath(ctx);
 }
+
+
 - (UIImage *)addImage:(UIImage *)image1 toImage:(UIImage *)image2 {
     UIGraphicsBeginImageContext(image1.size);
-    
+    NSLog(@"%@",NSStringFromCGSize(image2.size));
     // Draw image1
     [image1 drawInRect:CGRectMake(0, 0, image1.size.width, image1.size.height)];
     
@@ -130,7 +157,10 @@
     return resultingImage;
 }
 
-+ (UIImage *)qrImageForString:(NSString *)string imageSize:(CGFloat)size {
+
+
+- (UIImage *)qrImageForString:(NSString *)string imageSize:(CGFloat)size {
+    
     if (![string length]) {
         return nil;
     }
@@ -141,27 +171,33 @@
     }
     
     // create context
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef ctx = CGBitmapContextCreate(0, size, size, 8, size * 4, colorSpace, kCGImageAlphaPremultipliedLast);
     
-    CGAffineTransform translateTransform = CGAffineTransformMakeTranslation(0, -size);
-    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(1, -1);
-    CGContextConcatCTM(ctx, CGAffineTransformConcat(translateTransform, scaleTransform));
+    if (size != 0){
+        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+        CGContextRef ctx = CGBitmapContextCreate(0, size, size, 8, size * 4, colorSpace, kCGImageAlphaPremultipliedLast);
     
-    // draw QR on this context
-    [ExtensionViewController drawQRCode:code context:ctx size:size];
+        CGAffineTransform translateTransform = CGAffineTransformMakeTranslation(0, -size);
+        CGAffineTransform scaleTransform = CGAffineTransformMakeScale(1, -1);
+        CGContextConcatCTM(ctx, CGAffineTransformConcat(translateTransform, scaleTransform));
     
-    // get image
-    CGImageRef qrCGImage = CGBitmapContextCreateImage(ctx);
-    UIImage * qrImage = [UIImage imageWithCGImage:qrCGImage];
+        // draw QR on this context
+        [self drawQRCode:code context:ctx size:size];
     
-    // some releases
-    CGContextRelease(ctx);
-    CGImageRelease(qrCGImage);
-    CGColorSpaceRelease(colorSpace);
-    QRcode_free(code);
+        // get image
+        CGImageRef qrCGImage = CGBitmapContextCreateImage(ctx);
+        UIImage * qrImage = [UIImage imageWithCGImage:qrCGImage];
     
-    return qrImage;
+        // some releases
+        CGContextRelease(ctx);
+        CGImageRelease(qrCGImage);
+        CGColorSpaceRelease(colorSpace);
+        QRcode_free(code);
+        return qrImage;
+
+    }else{
+        return nil;
+    }
+    
 }
 
 @end

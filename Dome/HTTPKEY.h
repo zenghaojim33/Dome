@@ -104,5 +104,8 @@
 #define GetCustomerInfo @"http://app.dome123.com/Handler.ashx?Action=GetShopUsersOrderList&data=%@"
 
 //二维码地址   用户id
-#define RQCode @"http://app.dome123.com/web/registerPage.aspx?sid=%@"
+#define QRCodeForSeller @"http://app.dome123.com/web/registerPage.aspx?sid=%@"
+
+#define QRCodeForBuyer @"http://m.dome123.com/index.html?sid=%@"
+
 #endif

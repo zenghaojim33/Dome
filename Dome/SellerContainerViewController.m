@@ -89,7 +89,7 @@ enum {
 {
     
     ShareInfo * userifo = [ShareInfo shareInstance];
-    _codeStr = [NSString stringWithFormat:RQCode,userifo.userModel.userID];
+    _codeStr = [NSString stringWithFormat:QRCodeForSeller,userifo.userModel.userID];
     
     UIImage * Code = [self qrImageForString:_codeStr imageSize:self.backgroundView.frame.size.width];
     UIImage * QRCodeImage = [self addImage:[UIImage imageNamed:@"CodeBG288.jpg"] toImage:Code];

@@ -84,6 +84,9 @@
 		15CEF1591B130CE300D1102A /* ChartViewPortHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CEF1131B130CE300D1102A /* ChartViewPortHandler.swift */; };
 		15CEF15C1B13277E00D1102A /* SellerContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CEF15B1B13277E00D1102A /* SellerContainerViewController.m */; };
 		15CEF15F1B13278F00D1102A /* BuyerContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CEF15E1B13278F00D1102A /* BuyerContainerViewController.m */; };
+		15CEF16B1B15AA3500D1102A /* WithdrawTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CEF16A1B15AA3500D1102A /* WithdrawTableViewController.m */; };
+		15CEF16E1B15B7C400D1102A /* Lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CEF16D1B15B7C400D1102A /* Lock.png */; };
+		15CEF1711B15C3BD00D1102A /* UIView+IBAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CEF1701B15C3BD00D1102A /* UIView+IBAppearance.m */; };
 		3B13016E1A7CAE26005AF639 /* myIncomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B13016C1A7CAE26005AF639 /* myIncomTableViewCell.m */; };
 		3B13016F1A7CAE26005AF639 /* myIncomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B13016D1A7CAE26005AF639 /* myIncomTableViewCell.xib */; };
 		3B16F4EA1A42D2A500601FA1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B16F4E91A42D2A500601FA1 /* main.m */; };
@@ -587,6 +590,11 @@
 		15CEF15B1B13277E00D1102A /* SellerContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SellerContainerViewController.m; sourceTree = "<group>"; };
 		15CEF15D1B13278F00D1102A /* BuyerContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyerContainerViewController.h; sourceTree = "<group>"; };
 		15CEF15E1B13278F00D1102A /* BuyerContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyerContainerViewController.m; sourceTree = "<group>"; };
+		15CEF1691B15AA3500D1102A /* WithdrawTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WithdrawTableViewController.h; sourceTree = "<group>"; };
+		15CEF16A1B15AA3500D1102A /* WithdrawTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WithdrawTableViewController.m; sourceTree = "<group>"; };
+		15CEF16D1B15B7C400D1102A /* Lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lock.png; sourceTree = "<group>"; };
+		15CEF16F1B15C3BD00D1102A /* UIView+IBAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+IBAppearance.h"; sourceTree = "<group>"; };
+		15CEF1701B15C3BD00D1102A /* UIView+IBAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+IBAppearance.m"; sourceTree = "<group>"; };
 		3B0E18BD1A846901000D4CFD /* HTTPKEY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPKEY.h; sourceTree = "<group>"; };
 		3B13016B1A7CAE26005AF639 /* myIncomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myIncomTableViewCell.h; sourceTree = "<group>"; };
 		3B13016C1A7CAE26005AF639 /* myIncomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myIncomTableViewCell.m; sourceTree = "<group>"; };
@@ -1253,6 +1261,8 @@
 			children = (
 				156404F01B0AE02200C63D6C /* UIImageView+FadeInEffect.h */,
 				156404F11B0AE02200C63D6C /* UIImageView+FadeInEffect.m */,
+				15CEF16F1B15C3BD00D1102A /* UIView+IBAppearance.h */,
+				15CEF1701B15C3BD00D1102A /* UIView+IBAppearance.m */,
 			);
 			name = Category;
 			path = RegExp;
@@ -1721,6 +1731,8 @@
 				3B13016B1A7CAE26005AF639 /* myIncomTableViewCell.h */,
 				3B13016C1A7CAE26005AF639 /* myIncomTableViewCell.m */,
 				3B13016D1A7CAE26005AF639 /* myIncomTableViewCell.xib */,
+				15CEF1691B15AA3500D1102A /* WithdrawTableViewController.h */,
+				15CEF16A1B15AA3500D1102A /* WithdrawTableViewController.m */,
 			);
 			name = "我的收入";
 			sourceTree = "<group>";
@@ -2034,6 +2046,7 @@
 		3B7917B71A48061A00156051 /* IMAGE */ = {
 			isa = PBXGroup;
 			children = (
+				15CEF16D1B15B7C400D1102A /* Lock.png */,
 				3BF45FC91AA98CA500916980 /* Delete.png */,
 				3BF45FCA1AA98CA500916980 /* Delete@2x.png */,
 				3BB532901B0582AC00F1ACCF /* arrows.png */,
@@ -2665,6 +2678,7 @@
 				3B71A9681A4BC2300091D925 /* 120_banknote1.png in Resources */,
 				3B71A95B1A4BC2300091D925 /* 60_world1.png in Resources */,
 				3B71A9761A4BC2300091D925 /* 50_cannel1.png in Resources */,
+				15CEF16E1B15B7C400D1102A /* Lock.png in Resources */,
 				3BD4298A1A4AA5BC0081A6EC /* Button9.png in Resources */,
 				3B71A93F1A4BC2300091D925 /* 35_seach1.png in Resources */,
 				3B71A9AC1A4BC2300091D925 /* 450X195_wsdw1.png in Resources */,
@@ -2906,6 +2920,7 @@
 				15CEF1571B130CE300D1102A /* ChartTransformerHorizontalBarChart.swift in Sources */,
 				3BC675B71A4939BE00707FE0 /* AddressViewController.m in Sources */,
 				3B9B90481B046A1B0001727C /* UpGradeViewController.m in Sources */,
+				15CEF16B1B15AA3500D1102A /* WithdrawTableViewController.m in Sources */,
 				3BC675BA1A493AD100707FE0 /* NewAddressViewController.m in Sources */,
 				3B2D5D861A65072000F3BBDD /* PromptView.m in Sources */,
 				15CEF13E1B130CE300D1102A /* ChartDataBaseFilter.swift in Sources */,
@@ -3020,6 +3035,7 @@
 				15CEF12E1B130CE300D1102A /* CandleChartDataEntry.swift in Sources */,
 				3BDB0CC91AA588CE007B77D6 /* OrderDetailModel.m in Sources */,
 				3BC675A81A49242000707FE0 /* MyIntegralViewController.m in Sources */,
+				15CEF1711B15C3BD00D1102A /* UIView+IBAppearance.m in Sources */,
 				15CEF1141B130CE300D1102A /* ChartAnimationEasing.swift in Sources */,
 				15CEF1291B130CE300D1102A /* BarChartDataEntry.swift in Sources */,
 				3BBB851B1A5930A6006C8A28 /* ChangInfoViewController.m in Sources */,

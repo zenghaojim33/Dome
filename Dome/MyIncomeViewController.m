@@ -11,6 +11,7 @@
 #import "myIncomTableViewCell.h"
 #import "OrderModel.h"
 #import "IncomeModel.h"
+#import "WithdrawTableViewController.h"
 #define pagesize 25
 @interface MyIncomeViewController ()
 <
@@ -301,9 +302,17 @@
     
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+
+#pragma  mark --- 提现
 - (IBAction)TouchWithdrawal:(id)sender
 {
-    NSLog(@"提现到银行卡");
+    
+    UITableViewController * withdrawVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WithdrawTableViewController"];
+    [self.navigationController pushViewController:withdrawVC animated:YES];
+    
+
+
 }
 #pragma mark - Table view data source
 

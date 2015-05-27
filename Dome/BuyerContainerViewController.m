@@ -40,7 +40,6 @@ enum {
         
         [Tools showPromptToView:self.view atPoint:self.view.center withText:@"分享成功" duration:0.7];
         
-        //Because November is luck month
     }
     
 }
@@ -87,18 +86,16 @@ enum {
 {
     
     ShareInfo * userifo = [ShareInfo shareInstance];
-    _codeStr = [NSString stringWithFormat:RQCode,userifo.userModel.userID];
+    _codeStr = [NSString stringWithFormat:QRCodeForBuyer,userifo.userModel.userID];
     
     UIImage * Code = [self qrImageForString:_codeStr imageSize:self.backgroundView.frame.size.width];
     UIImage * QRCodeImage = [self addImage:[UIImage imageNamed:@"CodeBG288.jpg"] toImage:Code];
-    
-    
-    
     
     self.backgroundView.image = QRCodeImage;
     
     
 }
+
 
 
 #pragma mark ---- QRCode Generation

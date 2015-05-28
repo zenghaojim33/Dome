@@ -86,19 +86,44 @@
 -(void)GetSmsCode
 {
     
-    HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
      NSString * phone = self.phoneNumberTF.text;
     
     
     [self.codeBth setBackgroundColor:[UIColor lightGrayColor]];
     self.codeBth.userInteractionEnabled = NO;
-    self.times = 60;
-    self.timer =[NSTimer scheduledTimerWithTimeInterval:1
-                                                 target:self
-                                               selector:@selector(animate:)
-                                               userInfo:nil
-                                                repeats:YES];
+
+    
+    
+    
+    __block int timeout=30; //倒计时时间
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(timer, ^{
+        if(timeout<=0){ //倒计时结束，关闭
+            dispatch_source_cancel(timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                [self.codeBth setTitle:@"发送验证码" forState:UIControlStateNormal];
+                self.codeBth.userInteractionEnabled = YES;
+            });
+        }else{
+            //            int minutes = timeout / 60;
+            int seconds = timeout % 60;
+            NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [self.codeBth setTitle:[NSString stringWithFormat:@"请等待%@秒",strTime] forState:UIControlStateNormal];
+                self.codeBth.userInteractionEnabled = NO;
+                
+            });
+            timeout--;
+            
+        }
+    });
+    dispatch_resume(timer);
+    
     
     NSMutableDictionary * data = [[NSMutableDictionary alloc]initWithObjects:@[phone] forKeys:@[@"phone"]];
     
@@ -135,7 +160,7 @@
         [self showAlertViewForTitle:text AndMessage:nil];
     }
     
-     [MBProgressHUD hideHUDForView:self.view animated:YES];
+
 }
 #pragma mark ShowAlertView
 -(void)showAlertViewForTitle:(NSString*)title AndMessage:(NSString*)message
@@ -145,17 +170,6 @@
     [av show];
 }
 
--(void)animate:(id)sender
-{
-    self.times --;
-    [self.codeBth setTitle:[NSString stringWithFormat:@"重新获取(%d)",self.times] forState:UIControlStateNormal];
-    if (self.times==0) {
-        self.codeBth.userInteractionEnabled = YES;
-        [self.codeBth setTitle:@"获取验证码" forState:UIControlStateNormal];
-        [self.codeBth setBackgroundColor:bthColor];
-        [self.timer invalidate];
-    }
-}
 
 
 - (void)viewDidLoad {

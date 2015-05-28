@@ -38,17 +38,25 @@
 
 -(void)viewDidLoad
 {
-    [Tools showPromptToView:self.view atPoint:self.view.center withText:@"登录成功" duration:1];
 
     [super viewDidLoad];
-    [self initNavigationBar];
     
-    
+    [Tools showPromptToView:self.view atPoint:self.view.center withText:@"登录成功" duration:1];
+
     
     if (shareInfo.userModel.shopname.length==0)
     {
         [self GetData];
     }
+
+}
+
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self initNavigationBar];
 
 }
 

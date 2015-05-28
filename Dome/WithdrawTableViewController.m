@@ -26,7 +26,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.title = @"提现到银行卡";
-
+    
     
     
     
@@ -62,7 +62,6 @@
     
     
 }
-
 
 
 

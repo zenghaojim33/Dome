@@ -12,6 +12,7 @@
 		156404F21B0AE02200C63D6C /* UIImageView+FadeInEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 156404F11B0AE02200C63D6C /* UIImageView+FadeInEffect.m */; };
 		156404F71B0AF00D00C63D6C /* OrderManageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 156404F31B0AF00D00C63D6C /* OrderManageModel.m */; };
 		156404F81B0AF00D00C63D6C /* OrderManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 156404F51B0AF00D00C63D6C /* OrderManagementViewController.m */; };
+		15A6BB601B16EF4D001F4507 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A6BB5F1B16EF4D001F4507 /* UICountingLabel.m */; };
 		15CEF1141B130CE300D1102A /* ChartAnimationEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CEF0C81B130CE300D1102A /* ChartAnimationEasing.swift */; };
 		15CEF1151B130CE300D1102A /* ChartAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CEF0C91B130CE300D1102A /* ChartAnimator.swift */; };
 		15CEF1161B130CE300D1102A /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CEF0CB1B130CE300D1102A /* BarChartView.swift */; };
@@ -515,6 +516,8 @@
 		156404F41B0AF00D00C63D6C /* OrderManageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderManageModel.h; path = BWMLineChartView/OrderManageModel.h; sourceTree = "<group>"; };
 		156404F51B0AF00D00C63D6C /* OrderManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderManagementViewController.m; path = BWMLineChartView/OrderManagementViewController.m; sourceTree = "<group>"; };
 		156404F61B0AF00D00C63D6C /* OrderManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderManagementViewController.h; path = BWMLineChartView/OrderManagementViewController.h; sourceTree = "<group>"; };
+		15A6BB5E1B16EF4D001F4507 /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UICountingLabel.h; path = ../UICountingLabel.h; sourceTree = "<group>"; };
+		15A6BB5F1B16EF4D001F4507 /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UICountingLabel.m; path = ../UICountingLabel.m; sourceTree = "<group>"; };
 		15CEF0BF1B130C4400D1102A /* Dome-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dome-Bridging-Header.h"; sourceTree = "<group>"; };
 		15CEF0C81B130CE300D1102A /* ChartAnimationEasing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartAnimationEasing.swift; sourceTree = "<group>"; };
 		15CEF0C91B130CE300D1102A /* ChartAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartAnimator.swift; sourceTree = "<group>"; };
@@ -1698,6 +1701,8 @@
 				3B2D5D821A6506EE00F3BBDD /* Tools.m */,
 				3B2D5D841A65072000F3BBDD /* PromptView.h */,
 				3B2D5D851A65072000F3BBDD /* PromptView.m */,
+				15A6BB5E1B16EF4D001F4507 /* UICountingLabel.h */,
+				15A6BB5F1B16EF4D001F4507 /* UICountingLabel.m */,
 			);
 			name = Tools;
 			path = Dome;
@@ -2953,6 +2958,7 @@
 				3B3456C21A48F94300C7AF4D /* MyIncomeViewController.m in Sources */,
 				15CEF1281B130CE300D1102A /* BarChartData.swift in Sources */,
 				3BCCB4F61A8B3808002F6BC6 /* SBJsonBase.m in Sources */,
+				15A6BB601B16EF4D001F4507 /* UICountingLabel.m in Sources */,
 				15CEF15F1B13278F00D1102A /* BuyerContainerViewController.m in Sources */,
 				3BCCB4F31A8B3808002F6BC6 /* NSObject+SBJSON.m in Sources */,
 				3BD429231A4A53200081A6EC /* CustomerInfoViewController.m in Sources */,

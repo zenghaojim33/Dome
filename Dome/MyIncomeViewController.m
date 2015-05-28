@@ -12,6 +12,7 @@
 #import "OrderModel.h"
 #import "IncomeModel.h"
 #import "WithdrawTableViewController.h"
+#import "UICountingLabel.h"
 #define pagesize 25
 @interface MyIncomeViewController ()
 <
@@ -43,10 +44,10 @@
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 
 @property (weak, nonatomic) IBOutlet UIButton *button;
-@property (weak, nonatomic) IBOutlet UILabel *Price1;
-@property (weak, nonatomic) IBOutlet UILabel *Price2;
-@property (weak, nonatomic) IBOutlet UILabel *Price3;
-@property (weak, nonatomic) IBOutlet UILabel *Price4;
+@property (weak, nonatomic) IBOutlet UICountingLabel *Price1;
+@property (weak, nonatomic) IBOutlet UICountingLabel *Price2;
+@property (weak, nonatomic) IBOutlet UICountingLabel *Price3;
+@property (weak, nonatomic) IBOutlet UICountingLabel *Price4;
 
 @property (strong, nonatomic) IBOutlet UIButton *bth1;
 @property (strong, nonatomic) IBOutlet UIButton *bth2;
@@ -97,8 +98,6 @@
     page = 1;
     self.selectView.alpha = 0;
     [self GetBenefitAccount];
-    
-    [self GetBenefitList];
     
     [self initView];
     
@@ -169,22 +168,38 @@
             {
                 //本店收入
                 price1 = [string floatValue];
-                self.Price1.text = [NSString stringWithFormat:@"¥%.2f",price1];
+               // self.Price1.text = [NSString stringWithFormat:@"¥%.2f",price1];
+                self.Price1.format = @"￥%.2f";
+                self.Price1.method = UILabelCountingMethodEaseOut;
+                [self.Price1 countFrom:0.0 to:price1 withDuration:1.5];
                 
             }else if (i==1)
             {
                 //一级分店收入
                 price2 = [string floatValue];
-                self.Price2.text = [NSString stringWithFormat:@"¥%.2f",price2];
+                //self.Price2.text = [NSString stringWithFormat:@"¥%.2f",price2];
+                self.Price2.format = @"￥%.2f";
+
+                self.Price2.method = UILabelCountingMethodEaseOut;
+                [self.Price1 countFrom:0.0 to:price2 withDuration:1.5];
             }else if (i==2)
             {
                 //二级分店收入
                 price3 = [string floatValue];
-                self.Price3.text = [NSString stringWithFormat:@"¥%.2f",price3];
+               // self.Price3.text = [NSString stringWithFormat:@"¥%.2f",price3];
+                self.Price3.format = @"￥%.2f";
+
+                self.Price3.method = UILabelCountingMethodEaseOut;
+                [self.Price3 countFrom:0.0 to:price3 withDuration:1.5];
             }
         }
         
-        self.Price4.text = [NSString stringWithFormat:@"¥%.2f",price1+price2+price3];
+        
+        self.Price4.format = @"￥%.2f";
+        self.Price4.method = UILabelCountingMethodEaseOut;
+        NSLog(@"%.2f",price1+price2+price3);
+        [self.Price4 countFrom:0.0 to:price1+price2+price3 withDuration:1.5];
+       // self.Price4.text = [NSString stringWithFormat:@"¥%.2f",price1+price2+price3];
     }
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
@@ -194,7 +209,7 @@
     
     
     NSString * shopId = shareInfo.userModel.userID;
-    shopId = @"dome88888888";
+    //shopId = @"dome88888888";
     NSNumber * pageStr = [NSNumber numberWithLong:page];
     NSNumber * pagesizeStr = [NSNumber numberWithInt:pagesize];
 
@@ -210,9 +225,9 @@
     [HTTPRequestManager getURL:link andParameter:nil onCompletion:^(id responseObject, NSError *error) {
         
         NSMutableDictionary * response = [responseObject copy];
-        [self GetBenefitAccount:response];
         dispatch_async(dispatch_get_main_queue(), ^{
-            
+            [self GetBenefitAccount:response];
+
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
         });
@@ -248,6 +263,7 @@
             model.UserId = [dateDit objectForKey:@"UserId"];
             model.UserType = [dateDit objectForKey:@"UserType"];
             [self.Incomes addObject:model];
+            
         }
         
         [self.myTableView reloadData];

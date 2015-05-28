@@ -25,7 +25,6 @@
     [UINavigationBar appearance].barStyle = UIStatusBarStyleDefault;
     
     
-    
     //判断当前设备
     [self deviceString];
     

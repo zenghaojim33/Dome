@@ -211,7 +211,7 @@
     [[NSUserDefaults standardUserDefaults] setFloat:Version forKey:@"Version"];
     
     [[NSUserDefaults standardUserDefaults] synchronize];
- 
+    UIImageView * imageView;
     
 }
 

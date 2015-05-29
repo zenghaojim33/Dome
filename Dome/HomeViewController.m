@@ -65,6 +65,8 @@
 
 -(void)GetData
 {
+    //获取用户的详细信息
+    
     shareInfo = [ShareInfo shareInstance];
     
     NSMutableDictionary * data = [[NSMutableDictionary alloc]initWithObjects:@[shareInfo.userModel.userID] forKeys:@[@"id"]];
@@ -94,6 +96,16 @@
     
     shareInfo.userModel.shopname=[info objectForKey:@"shopname"];
     shareInfo.userModel.shopinfo=[info objectForKey:@"shopinfo"];
+    shareInfo.userModel.acountname = info[@"acountname"];
+    shareInfo.userModel.address = info[@"address"];
+    shareInfo.userModel.area = info[@"area"];
+    shareInfo.userModel.bank = info[@"bank"];
+    shareInfo.userModel.bankno = info[@"bankno"];
+    shareInfo.userModel.certificate = info[@"certificate"];
+    shareInfo.userModel.city = info[@"city"];
+    shareInfo.userModel.email = info[@"email"];
+    shareInfo.userModel.provinces = info[@"provinces"];
+
 }
 
 

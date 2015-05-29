@@ -7,14 +7,21 @@
 //
 
 #import "WithdrawTableViewController.h"
-
+#import "ShareInfo.h"
 @interface WithdrawTableViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *WithdrawTableView;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UILabel *bankName;
+@property (weak, nonatomic) IBOutlet UILabel *bankAccount;
+@property (weak, nonatomic) IBOutlet UILabel *userName;
 
 @end
 
-@implementation WithdrawTableViewController
+@implementation WithdrawTableViewController{
+    
+    ShareInfo * _userInfo;
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,6 +34,10 @@
     
     self.title = @"提现到银行卡";
     
+    _userInfo = [ShareInfo shareInstance];
+    self.bankName.text = _userInfo.userModel.bank;
+    self.bankAccount.text = _userInfo.userModel.bankno;
+    self.userName.text = _userInfo.userModel.acountname;
     
     
     

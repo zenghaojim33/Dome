@@ -14,4 +14,15 @@
 @property(nonatomic,strong)NSString * shopid;//店铺id
 @property(nonatomic,strong)NSString * shopname;//店铺名
 @property(nonatomic,strong)NSString * shopinfo;
+@property(nonatomic,strong)NSString * address;
+@property(nonatomic,strong)NSString * area;
+@property(nonatomic,strong)NSString * bank;
+@property(nonatomic,strong)NSString * bankno;
+@property(nonatomic,strong)NSString * certificate;
+@property(nonatomic,strong)NSString * city;
+@property(nonatomic,strong)NSString * email;
+@property(nonatomic,strong)NSString * provinces;
+@property(nonatomic,strong)NSString * acountname;
+
+
 @end

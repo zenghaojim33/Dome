@@ -82,4 +82,64 @@
     return [identityCardPredicate evaluateWithObject:identityCard];
 }
 
+// 金钱
++ (BOOL)validateMoney:(NSString *)money {
+    NSString *reg1 = @"^[0-9]+\\.[0-9]{0,2}$";
+    NSPredicate *pre1 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", reg1];
+    
+    NSString *reg2 = @"^\\d+$";
+    NSPredicate *pre2 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", reg2];
+    
+    NSString *reg3 = @"^0{2,}$";
+    NSPredicate *pre3 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", reg3];
+    
+    if (([pre1 evaluateWithObject:money] || [pre2 evaluateWithObject:money]) && (![pre3 evaluateWithObject:money])) {
+        return YES;
+    }
+
+    return NO;
+}
+
+// 腾讯QQ号 (腾讯QQ号从10000开始)
++ (BOOL)validateQQNumber:(NSString *)QQNumber {
+    NSString *regex = @"^[1-9][0-9]{4,}$";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    return [predicate evaluateWithObject:QQNumber];
+}
+
+// 中国邮政编码 (中国邮政编码为6位数字)
++ (BOOL)validateZipCode:(NSString *)zipCode {
+    NSString *regex = @"^[1-9]\\d{5}(?!\\d)$";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    return [predicate evaluateWithObject:zipCode];
+}
+
+// IP地址 (提取IP地址时有用)
++ (BOOL)validateIPAddress:(NSString *)IPAddress {
+    NSString *regex = @"^\\d+\\.\\d+\\.\\d+\\.\\d+$";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    return [predicate evaluateWithObject:IPAddress];
+}
+
+// 电话号码("XXX-XXXXXXX"、"XXXX-XXXXXXXX"、"XXX-XXXXXXX"、"XXX-XXXXXXXX"、"XXXXXXX"和"XXXXXXXX)
++ (BOOL)validatePhoneNumber:(NSString *)phoneNumber {
+    NSString *regex = @"^\\d+\\.\\d+\\.\\d+\\.\\d+$";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    return [predicate evaluateWithObject:phoneNumber];
+}
+
+// InternetURL
++ (BOOL)validateInternetURL:(NSString *)internetURL {
+    NSString *regex = @"([a-zA-z]+://[^\\s]*)|(^http://([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?$)";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    return [predicate evaluateWithObject:internetURL];
+}
+
+// 验证银行卡号
++ (BOOL)validateBankAccountNumber:(NSString *)bankAccountNumber {
+    NSString *regex = @"^(\\d{16}|\\d{19})$";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    return [predicate evaluateWithObject:bankAccountNumber];
+}
+
 @end

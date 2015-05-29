@@ -20,7 +20,7 @@
 #import "SettingViewController.h"
 #import "MyInfoViewController.h"
 
-#import "ChangInfoViewController.h"
+#import "ChangeInfoViewController.h"
 
 #import "GuestModel.h"
 @interface HomeViewController ()
@@ -210,8 +210,7 @@
 #pragma mark 个人信息
 - (IBAction)TouchInfoButton:(UIButton *)button
 {
-    ChangInfoViewController * vc =[self.storyboard instantiateViewControllerWithIdentifier:@"ChangInfoViewController"];
-    vc.isChange = YES;
+    ChangeInfoViewController * vc =[self.storyboard instantiateViewControllerWithIdentifier:@"ChangeInfoViewController"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)didReceiveMemoryWarning {

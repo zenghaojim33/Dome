@@ -13,6 +13,22 @@
 		156404F71B0AF00D00C63D6C /* OrderManageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 156404F31B0AF00D00C63D6C /* OrderManageModel.m */; };
 		156404F81B0AF00D00C63D6C /* OrderManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 156404F51B0AF00D00C63D6C /* OrderManagementViewController.m */; };
 		15A6BB601B16EF4D001F4507 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A6BB5F1B16EF4D001F4507 /* UICountingLabel.m */; };
+		15A6BB651B182E5E001F4507 /* ChangeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A6BB621B182E5E001F4507 /* ChangeInfoViewController.m */; };
+		15A6BB661B182E5E001F4507 /* BWMBankCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A6BB641B182E5E001F4507 /* BWMBankCoder.m */; };
+		15A6BB721B182ED1001F4507 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15A6BB691B182ED1001F4507 /* area.plist */; };
+		15A6BB731B182ED1001F4507 /* CNCityAreaCitiesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A6BB6B1B182ED1001F4507 /* CNCityAreaCitiesModel.m */; };
+		15A6BB741B182ED1001F4507 /* CNCityAreaFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A6BB6D1B182ED1001F4507 /* CNCityAreaFactory.m */; };
+		15A6BB751B182ED1001F4507 /* CNCityAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A6BB6F1B182ED1001F4507 /* CNCityAreaModel.m */; };
+		15A6BB761B182ED1001F4507 /* CNCityPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A6BB711B182ED1001F4507 /* CNCityPickerView.m */; };
+		15A6BB791B182F1D001F4507 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A6BB781B182F1D001F4507 /* UIAlertView+Blocks.m */; };
+		15A6BB831B183582001F4507 /* TPKeyboardAvoidingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A6BB7C1B183582001F4507 /* TPKeyboardAvoidingCollectionView.m */; };
+		15A6BB841B183582001F4507 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A6BB7E1B183582001F4507 /* TPKeyboardAvoidingScrollView.m */; };
+		15A6BB851B183582001F4507 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A6BB801B183582001F4507 /* TPKeyboardAvoidingTableView.m */; };
+		15A6BB861B183582001F4507 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A6BB821B183582001F4507 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
+		15A6BB8B1B183F44001F4507 /* RegExpValidate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A6BB881B183F44001F4507 /* RegExpValidate.m */; };
+		15A6BB8C1B183F44001F4507 /* RegExpValidateFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A6BB8A1B183F44001F4507 /* RegExpValidateFormat.m */; };
+		15A6BB8F1B1850F4001F4507 /* BankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A6BB8E1B1850F4001F4507 /* BankViewController.m */; };
+		15A6BB911B18516D001F4507 /* BankCode.json in Resources */ = {isa = PBXBuildFile; fileRef = 15A6BB901B18516D001F4507 /* BankCode.json */; };
 		15CEF1141B130CE300D1102A /* ChartAnimationEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CEF0C81B130CE300D1102A /* ChartAnimationEasing.swift */; };
 		15CEF1151B130CE300D1102A /* ChartAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CEF0C91B130CE300D1102A /* ChartAnimator.swift */; };
 		15CEF1161B130CE300D1102A /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CEF0CB1B130CE300D1102A /* BarChartView.swift */; };
@@ -383,7 +399,6 @@
 		3BBB85131A5913B5006C8A28 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBB85121A5913B5006C8A28 /* FeedbackViewController.m */; };
 		3BBB85171A59289F006C8A28 /* ExpressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBB85161A59289F006C8A28 /* ExpressViewController.m */; };
 		3BBB851B1A5930A6006C8A28 /* ChangInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBB851A1A5930A6006C8A28 /* ChangInfoViewController.m */; };
-		3BBB851E1A593813006C8A28 /* BankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBB851D1A593813006C8A28 /* BankViewController.m */; };
 		3BBB85201A593A93006C8A28 /* PickerBGView2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3BBB851F1A593A93006C8A28 /* PickerBGView2.jpg */; };
 		3BC2D6501AE8D82E006AF951 /* BWMLineChartCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC2D64B1AE8D82E006AF951 /* BWMLineChartCaptionView.m */; };
 		3BC2D6511AE8D82E006AF951 /* BWMLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC2D64D1AE8D82E006AF951 /* BWMLineChartView.m */; };
@@ -418,7 +433,6 @@
 		3BCCB4F61A8B3808002F6BC6 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCB4EE1A8B3808002F6BC6 /* SBJsonBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3BCCB4F71A8B3808002F6BC6 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCB4F01A8B3808002F6BC6 /* SBJsonParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3BCCB4F81A8B3808002F6BC6 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCB4F21A8B3808002F6BC6 /* SBJsonWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		3BCCB4FC1A8B492D002F6BC6 /* RegExpValidate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCB4FB1A8B492D002F6BC6 /* RegExpValidate.m */; };
 		3BCCB4FF1A8B4E0B002F6BC6 /* RushOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCB4FE1A8B4E0B002F6BC6 /* RushOrderModel.m */; };
 		3BD4291F1A4A516F0081A6EC /* CustomerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD4291D1A4A516F0081A6EC /* CustomerTableViewCell.m */; };
 		3BD429201A4A516F0081A6EC /* CustomerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD4291E1A4A516F0081A6EC /* CustomerTableViewCell.xib */; };
@@ -518,6 +532,36 @@
 		156404F61B0AF00D00C63D6C /* OrderManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderManagementViewController.h; path = BWMLineChartView/OrderManagementViewController.h; sourceTree = "<group>"; };
 		15A6BB5E1B16EF4D001F4507 /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UICountingLabel.h; path = ../UICountingLabel.h; sourceTree = "<group>"; };
 		15A6BB5F1B16EF4D001F4507 /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UICountingLabel.m; path = ../UICountingLabel.m; sourceTree = "<group>"; };
+		15A6BB611B182E5E001F4507 /* ChangeInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeInfoViewController.h; sourceTree = "<group>"; };
+		15A6BB621B182E5E001F4507 /* ChangeInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeInfoViewController.m; sourceTree = "<group>"; };
+		15A6BB631B182E5E001F4507 /* BWMBankCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWMBankCoder.h; sourceTree = "<group>"; };
+		15A6BB641B182E5E001F4507 /* BWMBankCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWMBankCoder.m; sourceTree = "<group>"; };
+		15A6BB691B182ED1001F4507 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		15A6BB6A1B182ED1001F4507 /* CNCityAreaCitiesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCityAreaCitiesModel.h; sourceTree = "<group>"; };
+		15A6BB6B1B182ED1001F4507 /* CNCityAreaCitiesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNCityAreaCitiesModel.m; sourceTree = "<group>"; };
+		15A6BB6C1B182ED1001F4507 /* CNCityAreaFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCityAreaFactory.h; sourceTree = "<group>"; };
+		15A6BB6D1B182ED1001F4507 /* CNCityAreaFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNCityAreaFactory.m; sourceTree = "<group>"; };
+		15A6BB6E1B182ED1001F4507 /* CNCityAreaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCityAreaModel.h; sourceTree = "<group>"; };
+		15A6BB6F1B182ED1001F4507 /* CNCityAreaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNCityAreaModel.m; sourceTree = "<group>"; };
+		15A6BB701B182ED1001F4507 /* CNCityPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCityPickerView.h; sourceTree = "<group>"; };
+		15A6BB711B182ED1001F4507 /* CNCityPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNCityPickerView.m; sourceTree = "<group>"; };
+		15A6BB771B182F1D001F4507 /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
+		15A6BB781B182F1D001F4507 /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
+		15A6BB7B1B183582001F4507 /* TPKeyboardAvoidingCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingCollectionView.h; sourceTree = "<group>"; };
+		15A6BB7C1B183582001F4507 /* TPKeyboardAvoidingCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingCollectionView.m; sourceTree = "<group>"; };
+		15A6BB7D1B183582001F4507 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		15A6BB7E1B183582001F4507 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		15A6BB7F1B183582001F4507 /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
+		15A6BB801B183582001F4507 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
+		15A6BB811B183582001F4507 /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		15A6BB821B183582001F4507 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
+		15A6BB871B183F44001F4507 /* RegExpValidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegExpValidate.h; sourceTree = "<group>"; };
+		15A6BB881B183F44001F4507 /* RegExpValidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegExpValidate.m; sourceTree = "<group>"; };
+		15A6BB891B183F44001F4507 /* RegExpValidateFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegExpValidateFormat.h; sourceTree = "<group>"; };
+		15A6BB8A1B183F44001F4507 /* RegExpValidateFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegExpValidateFormat.m; sourceTree = "<group>"; };
+		15A6BB8D1B1850F4001F4507 /* BankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BankViewController.h; sourceTree = "<group>"; };
+		15A6BB8E1B1850F4001F4507 /* BankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BankViewController.m; sourceTree = "<group>"; };
+		15A6BB901B18516D001F4507 /* BankCode.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BankCode.json; sourceTree = "<group>"; };
 		15CEF0BF1B130C4400D1102A /* Dome-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dome-Bridging-Header.h"; sourceTree = "<group>"; };
 		15CEF0C81B130CE300D1102A /* ChartAnimationEasing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartAnimationEasing.swift; sourceTree = "<group>"; };
 		15CEF0C91B130CE300D1102A /* ChartAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartAnimator.swift; sourceTree = "<group>"; };
@@ -979,8 +1023,6 @@
 		3BBB85161A59289F006C8A28 /* ExpressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressViewController.m; sourceTree = "<group>"; };
 		3BBB85191A5930A6006C8A28 /* ChangInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangInfoViewController.h; sourceTree = "<group>"; };
 		3BBB851A1A5930A6006C8A28 /* ChangInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangInfoViewController.m; sourceTree = "<group>"; };
-		3BBB851C1A593813006C8A28 /* BankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BankViewController.h; sourceTree = "<group>"; };
-		3BBB851D1A593813006C8A28 /* BankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BankViewController.m; sourceTree = "<group>"; };
 		3BBB851F1A593A93006C8A28 /* PickerBGView2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PickerBGView2.jpg; sourceTree = "<group>"; };
 		3BC2D64A1AE8D82E006AF951 /* BWMLineChartCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWMLineChartCaptionView.h; sourceTree = "<group>"; };
 		3BC2D64B1AE8D82E006AF951 /* BWMLineChartCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWMLineChartCaptionView.m; sourceTree = "<group>"; };
@@ -1036,8 +1078,6 @@
 		3BCCB4F01A8B3808002F6BC6 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		3BCCB4F11A8B3808002F6BC6 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		3BCCB4F21A8B3808002F6BC6 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		3BCCB4FA1A8B492D002F6BC6 /* RegExpValidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegExpValidate.h; sourceTree = "<group>"; };
-		3BCCB4FB1A8B492D002F6BC6 /* RegExpValidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegExpValidate.m; sourceTree = "<group>"; };
 		3BCCB4FD1A8B4E0B002F6BC6 /* RushOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RushOrderModel.h; sourceTree = "<group>"; };
 		3BCCB4FE1A8B4E0B002F6BC6 /* RushOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RushOrderModel.m; sourceTree = "<group>"; };
 		3BD4291C1A4A516F0081A6EC /* CustomerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerTableViewCell.h; sourceTree = "<group>"; };
@@ -1227,6 +1267,7 @@
 		156404DF1B05A8C400C63D6C /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				15A6BB7A1B183582001F4507 /* TPKeyboardAvoiding */,
 				3BD8362A1A49012800520BDD /* libqrencode */,
 				15CEF0C61B130CE300D1102A /* Charts */,
 				3BCCB4E51A8B3808002F6BC6 /* SBJson */,
@@ -1266,9 +1307,51 @@
 				156404F11B0AE02200C63D6C /* UIImageView+FadeInEffect.m */,
 				15CEF16F1B15C3BD00D1102A /* UIView+IBAppearance.h */,
 				15CEF1701B15C3BD00D1102A /* UIView+IBAppearance.m */,
+				15A6BB771B182F1D001F4507 /* UIAlertView+Blocks.h */,
+				15A6BB781B182F1D001F4507 /* UIAlertView+Blocks.m */,
 			);
 			name = Category;
 			path = RegExp;
+			sourceTree = "<group>";
+		};
+		15A6BB671B182ED1001F4507 /* CNCityPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				15A6BB681B182ED1001F4507 /* Classes */,
+				15A6BB701B182ED1001F4507 /* CNCityPickerView.h */,
+				15A6BB711B182ED1001F4507 /* CNCityPickerView.m */,
+			);
+			name = CNCityPickerView;
+			path = Dome/MJRefresh/CNCityPickerView;
+			sourceTree = "<group>";
+		};
+		15A6BB681B182ED1001F4507 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				15A6BB691B182ED1001F4507 /* area.plist */,
+				15A6BB6A1B182ED1001F4507 /* CNCityAreaCitiesModel.h */,
+				15A6BB6B1B182ED1001F4507 /* CNCityAreaCitiesModel.m */,
+				15A6BB6C1B182ED1001F4507 /* CNCityAreaFactory.h */,
+				15A6BB6D1B182ED1001F4507 /* CNCityAreaFactory.m */,
+				15A6BB6E1B182ED1001F4507 /* CNCityAreaModel.h */,
+				15A6BB6F1B182ED1001F4507 /* CNCityAreaModel.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		15A6BB7A1B183582001F4507 /* TPKeyboardAvoiding */ = {
+			isa = PBXGroup;
+			children = (
+				15A6BB7B1B183582001F4507 /* TPKeyboardAvoidingCollectionView.h */,
+				15A6BB7C1B183582001F4507 /* TPKeyboardAvoidingCollectionView.m */,
+				15A6BB7D1B183582001F4507 /* TPKeyboardAvoidingScrollView.h */,
+				15A6BB7E1B183582001F4507 /* TPKeyboardAvoidingScrollView.m */,
+				15A6BB7F1B183582001F4507 /* TPKeyboardAvoidingTableView.h */,
+				15A6BB801B183582001F4507 /* TPKeyboardAvoidingTableView.m */,
+				15A6BB811B183582001F4507 /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
+				15A6BB821B183582001F4507 /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
+			);
+			path = TPKeyboardAvoiding;
 			sourceTree = "<group>";
 		};
 		15CEF0C61B130CE300D1102A /* Charts */ = {
@@ -1418,6 +1501,7 @@
 			children = (
 				3B2D5D871A65073500F3BBDD /* Tools */,
 				156404DF1B05A8C400C63D6C /* ThirdParty */,
+				15A6BB671B182ED1001F4507 /* CNCityPickerView */,
 				156404DE1B05A8AB00C63D6C /* Library */,
 				3B16F4E61A42D2A500601FA1 /* Dome */,
 				3B16F4E51A42D2A500601FA1 /* Products */,
@@ -2218,10 +2302,15 @@
 		3BBB85181A593090006C8A28 /* 我的资料 */ = {
 			isa = PBXGroup;
 			children = (
+				15A6BB611B182E5E001F4507 /* ChangeInfoViewController.h */,
+				15A6BB621B182E5E001F4507 /* ChangeInfoViewController.m */,
+				15A6BB631B182E5E001F4507 /* BWMBankCoder.h */,
+				15A6BB641B182E5E001F4507 /* BWMBankCoder.m */,
 				3BBB85191A5930A6006C8A28 /* ChangInfoViewController.h */,
 				3BBB851A1A5930A6006C8A28 /* ChangInfoViewController.m */,
-				3BBB851C1A593813006C8A28 /* BankViewController.h */,
-				3BBB851D1A593813006C8A28 /* BankViewController.m */,
+				15A6BB8D1B1850F4001F4507 /* BankViewController.h */,
+				15A6BB8E1B1850F4001F4507 /* BankViewController.m */,
+				15A6BB901B18516D001F4507 /* BankCode.json */,
 			);
 			name = "我的资料";
 			sourceTree = "<group>";
@@ -2358,8 +2447,10 @@
 		3BCCB4F91A8B492D002F6BC6 /* RegExp */ = {
 			isa = PBXGroup;
 			children = (
-				3BCCB4FA1A8B492D002F6BC6 /* RegExpValidate.h */,
-				3BCCB4FB1A8B492D002F6BC6 /* RegExpValidate.m */,
+				15A6BB871B183F44001F4507 /* RegExpValidate.h */,
+				15A6BB881B183F44001F4507 /* RegExpValidate.m */,
+				15A6BB891B183F44001F4507 /* RegExpValidateFormat.h */,
+				15A6BB8A1B183F44001F4507 /* RegExpValidateFormat.m */,
 			);
 			path = RegExp;
 			sourceTree = "<group>";
@@ -2682,6 +2773,7 @@
 				3B4C4BF11AF1D246009FE9F3 /* 25_edit1@3x.png in Resources */,
 				3B71A9681A4BC2300091D925 /* 120_banknote1.png in Resources */,
 				3B71A95B1A4BC2300091D925 /* 60_world1.png in Resources */,
+				15A6BB721B182ED1001F4507 /* area.plist in Resources */,
 				3B71A9761A4BC2300091D925 /* 50_cannel1.png in Resources */,
 				15CEF16E1B15B7C400D1102A /* Lock.png in Resources */,
 				3BD4298A1A4AA5BC0081A6EC /* Button9.png in Resources */,
@@ -2780,6 +2872,7 @@
 				3B3857311AF08C7E002AEB57 /* 美妆@2x.png in Resources */,
 				3B71A9A31A4BC2300091D925 /* 180_file1.png in Resources */,
 				3B13016F1A7CAE26005AF639 /* myIncomTableViewCell.xib in Resources */,
+				15A6BB911B18516D001F4507 /* BankCode.json in Resources */,
 				3B71A9881A4BC2300091D925 /* 70_seach1.png in Resources */,
 				3B71A9741A4BC2300091D925 /* 160_Ellipse1.png in Resources */,
 				3B6032471A5255A0003D9214 /* area.plist in Resources */,
@@ -2872,6 +2965,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15CEF14B1B130CE300D1102A /* ChartYAxisRendererRadarChart.swift in Sources */,
+				15A6BB731B182ED1001F4507 /* CNCityAreaCitiesModel.m in Sources */,
 				15CEF11C1B130CE300D1102A /* LineChartView.swift in Sources */,
 				15CEF11E1B130CE300D1102A /* PieRadarChartViewBase.swift in Sources */,
 				15CEF1591B130CE300D1102A /* ChartViewPortHandler.swift in Sources */,
@@ -2879,8 +2973,8 @@
 				3B2E4F361A907622006E9892 /* NSDate+convenience.m in Sources */,
 				3B808AF91AEDC93400664B72 /* IQBarButtonItem.m in Sources */,
 				3B4FAB2B1AA6D53F00850B02 /* JenkButton.m in Sources */,
-				3BCCB4FC1A8B492D002F6BC6 /* RegExpValidate.m in Sources */,
 				3B2E4F371A907622006E9892 /* NSMutableArray+convenience.m in Sources */,
+				15A6BB8B1B183F44001F4507 /* RegExpValidate.m in Sources */,
 				15CEF1491B130CE300D1102A /* ChartYAxisRenderer.swift in Sources */,
 				3B2E4F401A907727006E9892 /* EndTimeViewController.m in Sources */,
 				3BD8363A1A49012800520BDD /* mask.c in Sources */,
@@ -2893,7 +2987,6 @@
 				15CEF1171B130CE300D1102A /* BarLineChartViewBase.swift in Sources */,
 				15CEF1371B130CE300D1102A /* PieChartData.swift in Sources */,
 				156404E41B05ABAC00C63D6C /* HTTPRequestManager.m in Sources */,
-				3BBB851E1A593813006C8A28 /* BankViewController.m in Sources */,
 				15CEF15C1B13277E00D1102A /* SellerContainerViewController.m in Sources */,
 				15CEF1471B130CE300D1102A /* ChartXAxisRendererHorizontalBarChart.swift in Sources */,
 				15CEF1241B130CE300D1102A /* ChartLimitLine.swift in Sources */,
@@ -2903,11 +2996,14 @@
 				15CEF14A1B130CE300D1102A /* ChartYAxisRendererHorizontalBarChart.swift in Sources */,
 				3BCCB4F51A8B3808002F6BC6 /* SBJSON.m in Sources */,
 				3BD8363C1A49012800520BDD /* qrinput.c in Sources */,
+				15A6BB8F1B1850F4001F4507 /* BankViewController.m in Sources */,
 				15CEF1311B130CE300D1102A /* ChartDataEntry.swift in Sources */,
 				3B808AF41AEDC93400664B72 /* IQUIWindow+Hierarchy.m in Sources */,
 				15CEF11F1B130CE300D1102A /* RadarChartView.swift in Sources */,
 				3BC675F51A4963B200707FE0 /* CustomerViewController.m in Sources */,
 				15CEF1331B130CE300D1102A /* CombinedChartData.swift in Sources */,
+				15A6BB661B182E5E001F4507 /* BWMBankCoder.m in Sources */,
+				15A6BB791B182F1D001F4507 /* UIAlertView+Blocks.m in Sources */,
 				3B2587A81AAFF7DF0035F75C /* OrderTableViewCell.m in Sources */,
 				15CEF13F1B130CE300D1102A /* BarChartRenderer.swift in Sources */,
 				15CEF14C1B130CE300D1102A /* CombinedChartRenderer.swift in Sources */,
@@ -2945,6 +3041,7 @@
 				156404F71B0AF00D00C63D6C /* OrderManageModel.m in Sources */,
 				15CEF1381B130CE300D1102A /* PieChartDataSet.swift in Sources */,
 				3B808AF31AEDC93400664B72 /* IQUIView+Hierarchy.m in Sources */,
+				15A6BB751B182ED1001F4507 /* CNCityAreaModel.m in Sources */,
 				3B2E4F3A1A907622006E9892 /* VRGCalendarView.m in Sources */,
 				15CEF12D1B130CE300D1102A /* CandleChartData.swift in Sources */,
 				15CEF1431B130CE300D1102A /* ChartLegendRenderer.swift in Sources */,
@@ -2980,6 +3077,7 @@
 				15CEF1251B130CE300D1102A /* ChartMarker.swift in Sources */,
 				3BC2D6511AE8D82E006AF951 /* BWMLineChartView.m in Sources */,
 				3BC50A501AA83FD400D18155 /* ProductViewController.m in Sources */,
+				15A6BB841B183582001F4507 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				3B808AF61AEDC93400664B72 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				3BC2D6501AE8D82E006AF951 /* BWMLineChartCaptionView.m in Sources */,
 				15CEF12B1B130CE300D1102A /* BarLineScatterCandleChartData.swift in Sources */,
@@ -2991,6 +3089,9 @@
 				15CEF13D1B130CE300D1102A /* ChartDataApproximatorFilter.swift in Sources */,
 				3BEC34F31AA41DAB0063DA8C /* GuestModel.m in Sources */,
 				15CEF1521B130CE300D1102A /* ChartColorTemplates.swift in Sources */,
+				15A6BB831B183582001F4507 /* TPKeyboardAvoidingCollectionView.m in Sources */,
+				15A6BB8C1B183F44001F4507 /* RegExpValidateFormat.m in Sources */,
+				15A6BB741B182ED1001F4507 /* CNCityAreaFactory.m in Sources */,
 				3B1BD6871A8496640009556C /* MJRefreshFooterView.m in Sources */,
 				3BCCB4F41A8B3808002F6BC6 /* NSString+SBJSON.m in Sources */,
 				3B13016E1A7CAE26005AF639 /* myIncomTableViewCell.m in Sources */,
@@ -3005,6 +3106,7 @@
 				15CEF1541B130CE300D1102A /* ChartHighlight.swift in Sources */,
 				15CEF1321B130CE300D1102A /* ChartDataSet.swift in Sources */,
 				15CEF12A1B130CE300D1102A /* BarChartDataSet.swift in Sources */,
+				15A6BB651B182E5E001F4507 /* ChangeInfoViewController.m in Sources */,
 				3B808AFA1AEDC93400664B72 /* IQTitleBarButtonItem.m in Sources */,
 				3BD8363F1A49012800520BDD /* split.c in Sources */,
 				3BBB85131A5913B5006C8A28 /* FeedbackViewController.m in Sources */,
@@ -3014,6 +3116,7 @@
 				15CEF1401B130CE300D1102A /* CandleStickChartRenderer.swift in Sources */,
 				3BD6B0EB1A5BCF95002622FE /* AdScrollView.m in Sources */,
 				3B16F4ED1A42D2A500601FA1 /* AppDelegate.m in Sources */,
+				15A6BB861B183582001F4507 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				15CEF1551B130CE300D1102A /* ChartSelInfo.swift in Sources */,
 				3BBB850D1A58FD17006C8A28 /* AboutDomeViewController.m in Sources */,
 				3BD836541A490BA200520BDD /* RushOrdersInfoTableViewCell.m in Sources */,
@@ -3022,7 +3125,9 @@
 				3BC675C91A49478600707FE0 /* CommodityTableViewCell.m in Sources */,
 				15CEF14E1B130CE300D1102A /* LineChartRenderer.swift in Sources */,
 				3BC675ED1A49628000707FE0 /* MyDomeViewController.m in Sources */,
+				15A6BB761B182ED1001F4507 /* CNCityPickerView.m in Sources */,
 				3BD8364B1A4907A000520BDD /* RushOrdersTableViewCell.m in Sources */,
+				15A6BB851B183582001F4507 /* TPKeyboardAvoidingTableView.m in Sources */,
 				15CEF1511B130CE300D1102A /* ScatterChartRenderer.swift in Sources */,
 				15CEF1211B130CE300D1102A /* ChartAxisBase.swift in Sources */,
 				3B7224F61A78B29100C3F7CA /* MyDomeTableViewCell.m in Sources */,

@@ -13,28 +13,53 @@
  */
 @interface RegExpValidate : NSObject
 
-/** 邮箱 */
+/** 验证电子邮箱 */
 + (BOOL)validateEmail:(NSString *)email;
 
-/** 手机号码验证 */
+/** 验证手机号码 */
 + (BOOL)validateMobile:(NSString *)mobile;
 
-/** 车牌号验证 */
+/** 验证车牌号 */
 + (BOOL)validateCarNo:(NSString *)carNo;
 
-/** 车型 */
+/** 验证车型 */
 + (BOOL)validateCarType:(NSString *)CarType;
 
-/** 用户名 */
+/** 验证用户名 */
 + (BOOL)validateUserName:(NSString *)name;
 
-/** 密码 */
+/** 验证密码 */
 + (BOOL)validatePassword:(NSString *)passWord;
 
-/** 昵称 */
+/** 验证昵称 */
 + (BOOL)validateNickname:(NSString *)nickname;
 
-/** 身份证号 */
+/** 验证身份证号 */
 + (BOOL)validateIdentityCard: (NSString *)identityCard;
+
+/** 判断金钱
+ 1.只能输入数字和小数点
+ 2.只能输入一个小数点
+ 3.只能以一个0开头
+ 4.小数点后后面只能输入两位数字 */
++ (BOOL)validateMoney: (NSString *)money;
+
+/** 验证腾讯QQ号 (腾讯QQ号从10000开始) */
++ (BOOL)validateQQNumber:(NSString *)QQNumber;
+
+/** 验证中国邮政编码 (中国邮政编码为6位数字) */
++ (BOOL)validateZipCode:(NSString *)zipCode;
+
+/** IP地址 (提取IP地址时有用)  */
++ (BOOL)validateIPAddress:(NSString *)IPAddress;
+
+/** 电话号码("XXX-XXXXXXX"、"XXXX-XXXXXXXX"、"XXX-XXXXXXX"、"XXX-XXXXXXXX"、"XXXXXXX"和"XXXXXXXX)  */
++ (BOOL)validatePhoneNumber:(NSString *)phoneNumber;
+
+/** InternetURL  */
++ (BOOL)validateInternetURL:(NSString *)internetURL;
+
+/** 验证银行卡号 */
++ (BOOL)validateBankAccountNumber:(NSString *)bankAccountNumber;
 
 @end

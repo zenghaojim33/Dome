@@ -656,7 +656,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Sk8-gK-bBT">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="abN-G5-Uhu">
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="abN-G5-Uhu">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Fkn-U5-wgg">
                                 <rect key="frame" x="233" y="9" width="60" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

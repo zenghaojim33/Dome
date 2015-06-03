@@ -38,7 +38,6 @@
     self.productName.text = model.productName;
     float price = [model.price floatValue];
     self.price.text = [NSString stringWithFormat:@"¥%.2f",price];
-    self.isMyDome = YES;
     self.categoryName.text = model.categoryName;
     self.TitleImages.image = [UIImage imageNamed:@""];
     NSString * path = model.TitleImages[0];
@@ -53,8 +52,9 @@
         [self.CellButton setTitleColor:[UIColor colorWithRed:199/255.0 green:69/255.0 blue:67/255.0 alpha:1] forState:UIControlStateNormal];
         [self.CellButton setImage:[UIImage imageNamed:@"25_right2.png"] forState:UIControlStateNormal];
     }else{
-        [self.CellButton setTitle:@"下架" forState:UIControlStateNormal];
-        // [cell.CellButton setTitleColor:[UIColor scrollViewTexturedBackgroundColor] forState:UIControlStateNormal];
+        self.isMyDome? [self.CellButton setTitle:@"下架" forState:UIControlStateNormal] : [self.CellButton setTitle:@"上架" forState:UIControlStateNormal];
+
+         [self.CellButton setTitleColor:[UIColor scrollViewTexturedBackgroundColor] forState:UIControlStateNormal];
         [self.CellButton setImage:[UIImage imageNamed:@"25_cannel1.png"] forState:UIControlStateNormal];
     }
 }

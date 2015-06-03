@@ -114,7 +114,7 @@
 
     cell.tag = indexPath.row;
     cell.delegate = self;
-    
+    cell.isMyDome = NO;
     return cell;
 }
 

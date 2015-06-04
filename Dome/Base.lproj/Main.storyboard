@@ -2229,45 +2229,9 @@
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMa-BD-mgL">
                                 <rect key="frame" x="0.0" y="64" width="320" height="30"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qaf-HI-a4N">
-                                        <rect key="frame" x="0.0" y="0.0" width="159" height="30"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="Jfs-of-mpY"/>
-                                        </constraints>
-                                        <state key="normal" title="价格">
-                                            <color key="titleColor" red="0.67785274620000002" green="0.031397764850000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="TouchSwitchButton:" destination="8Aw-rS-qu2" eventType="touchUpInside" id="5UF-EZ-LYR"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gBU-cb-Eyw">
-                                        <rect key="frame" x="160" y="0.0" width="160" height="30"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="7rf-o3-0s4"/>
-                                        </constraints>
-                                        <state key="normal" title="销量">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="TouchSwitchButton:" destination="8Aw-rS-qu2" eventType="touchUpInside" id="8uA-gz-F85"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="gBU-cb-Eyw" firstAttribute="leading" secondItem="Qaf-HI-a4N" secondAttribute="trailing" constant="1" id="5qt-jQ-Hcv"/>
-                                    <constraint firstAttribute="trailing" secondItem="gBU-cb-Eyw" secondAttribute="trailing" id="FLe-ly-qCf"/>
-                                    <constraint firstItem="Qaf-HI-a4N" firstAttribute="top" secondItem="gMa-BD-mgL" secondAttribute="top" id="Hle-JF-xTu"/>
                                     <constraint firstAttribute="height" constant="30" id="PCY-kB-tLP"/>
-                                    <constraint firstItem="gBU-cb-Eyw" firstAttribute="width" secondItem="Qaf-HI-a4N" secondAttribute="width" constant="1" id="afY-br-Fcw"/>
-                                    <constraint firstItem="gBU-cb-Eyw" firstAttribute="top" secondItem="gMa-BD-mgL" secondAttribute="top" id="hyT-hi-qmL"/>
-                                    <constraint firstItem="Qaf-HI-a4N" firstAttribute="leading" secondItem="gMa-BD-mgL" secondAttribute="leading" id="zG8-co-HeZ"/>
                                 </constraints>
                             </view>
                         </subviews>

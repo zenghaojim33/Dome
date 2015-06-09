@@ -65,8 +65,10 @@
 
 - (void)GetRoot
 {
-
-    NSString * link = [[NSString stringWithFormat:GetByName,@"root"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary * postDict = @{@"categoryid":@"root"};
+    SBJsonWriter * json = [[SBJsonWriter alloc]init];
+    NSString *jsonData = [json stringWithObject:postDict];
+    NSString * link = [[NSString stringWithFormat:GetByName,jsonData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     HUD.labelText = @"正在获取数据";

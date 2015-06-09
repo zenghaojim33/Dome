@@ -14,7 +14,7 @@
 #import "WXApi.h"
 #import "MyDomeTableViewCell.h"
 #import "ProductModel.h"
-
+#import "BlocksKit.h"
 #import "UIImageView+WebCache.h"
 #import "SDWebImage/SDWebImageManager.h"
 #import "ProductViewController.h"
@@ -75,7 +75,7 @@
            
         pageindex++;
      
-        [self performSelector:@selector(UpData) withObject:nil afterDelay:0.5];
+       [self UpData];
        
        
        
@@ -92,21 +92,77 @@
 }
 -(void)UpData
 {
-    HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    HUD.labelText = @"正在获取数据";
-    NSString * link = [[NSString stringWithFormat:Getbycategoryandvalueid,self.valueids,self.categoryid,pageindex,self.sort,_sequence] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString * uid = shareInfo.userModel.userID;
+    NSString * link = [[NSString stringWithFormat:Getbycategoryandvalueid,self.valueids,self.categoryid,pageindex,self.sort,_sequence,uid,@1] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
     [HTTPRequestManager getURL:link andParameter:nil onCompletion:^(id responseObject, NSError *error) {
         NSMutableArray * response = [responseObject copy];
-        [self GetByCategoryData:response];
         dispatch_async(dispatch_get_main_queue(), ^{
-            
+            [self GetByCategoryData:response];
+
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });
  
     }];
 
 }
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    shareInfo = [ShareInfo shareInstance];
+    switchColor = self.SwitchButton1.tintColor;
+    //搜索
+    isPrice = YES;
+    isSearch = NO;
+    _sequence = @"desc";
+    
+    self.SelectArray = [NSMutableArray array];
+    self.myTableView.delegate = self;
+    self.myTableView.dataSource = self;
+    
+    self.myTableView.tableHeaderView = [[UIView alloc] init];
+    self.myTableView.tableFooterView = [[UIView alloc] init];
+    
+    self.myTableView.tableHeaderView = self.userView;
+    [self.myTableView registerNib:[UINib nibWithNibName:@"MyDomeTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
+    
+    _footer = [MJRefreshFooterView footer];
+    _footer.scrollView = self.myTableView;
+    _footer.delegate = self;
+    
+    [self.myTableView reloadData];
+    // Do any additional setup after loading the view.
+    
+    self.myTextField.delegate = self;
+    
+    
+    HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    HUD.labelText = @"正在获取数据";
+    pageindex = 1;
+    if (self.Products.count == 0)
+    {
+        
+        // self.key = @"护肤,彩妆,美发,美体,香氛";
+        self.key = @"";
+        self.valueids = @"";
+        self.categoryid = @"";
+        self.seachtype = @"n";
+        self.sort = @"price";
+        
+        
+        
+        [self UpData];
+        
+        
+    }
+    
+    
+    
+    
+    self.selectView.alpha = 0;
+}
+
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -190,7 +246,7 @@
     }
     
     [cell updateCellWithModel:model];
-    
+    cell.isMyDome = YES;
     cell.tag = indexPath.row;
     cell.delegate = self;
     return cell;
@@ -225,12 +281,50 @@
         [self.DoneButton setTitle:[NSString stringWithFormat:@"下架(%lu)",(unsigned long)self.SelectArray.count] forState:UIControlStateNormal];
     }
 }
+
+
+
+
+
+
 - (IBAction)TouchDone:(id)sender
 {
     if (self.SelectArray.count ==0)
     {
         [self showAlertViewForTitle:@"请选择货品" AndMessage:nil];
     }else{
+        HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        HUD.labelText = @"正在下架商品";
+        NSMutableString * selectedProductString = [NSMutableString stringWithString:@""];
+        for (ProductModel * model in self.SelectArray){
+            [selectedProductString appendFormat:@"%@,",model.productId];
+        }
+        //删除最后一个逗号
+        [selectedProductString substringToIndex:(selectedProductString.length -1)];
+        
+        NSDictionary * postDict = @{@"uid":shareInfo.userModel.userID,
+                                    @"pidlist":selectedProductString,
+                                    @"isshow":@"0"};
+    
+        [HTTPRequestManager postURL:OnOffSaleAPI andParameter:postDict onCompletion:^(id responseObject, NSError *error) {
+           
+            if ([responseObject[@"errormsg"] isEqualToString:@""]){
+                
+                UIAlertView * alertView = [[UIAlertView alloc]init];
+                alertView.message = @"下架成功";
+                [alertView addButtonWithTitle:@"确定"];
+                [alertView show];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self UpData];
+                    
+                });
+            }
+            
+        }];
+        
+        
+        
         
     }
 }
@@ -303,103 +397,51 @@
 {
     return 170;
 }
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    switchColor = self.SwitchButton1.tintColor;
-    //搜索
-    isPrice = YES;
-    isSearch = NO;
-    _sequence = @"desc";
-    
-    self.SelectArray = [NSMutableArray array];
-    self.myTableView.delegate = self;
-    self.myTableView.dataSource = self;
-    
-    self.myTableView.tableHeaderView = [[UIView alloc] init];
-    self.myTableView.tableFooterView = [[UIView alloc] init];
-    
-    self.myTableView.tableHeaderView = self.userView;
-    [self.myTableView registerNib:[UINib nibWithNibName:@"MyDomeTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
-    
-    _footer = [MJRefreshFooterView footer];
-    _footer.scrollView = self.myTableView;
-    _footer.delegate = self;
-    
-    [self.myTableView reloadData];
-    // Do any additional setup after loading the view.
-    
-    self.myTextField.delegate = self;
-    
-    
-    
-    pageindex = 1;
-    if (self.Products.count == 0)
-    {
-        
-       // self.key = @"护肤,彩妆,美发,美体,香氛";
-        self.key = @"";
-        self.valueids = @"";
-        self.categoryid = @"";
-        self.seachtype = @"n";
-        self.sort = @"price";
-        
 
-        
-        [self UpData];
-        
-        
-    }
-    
-
-
-    
-    self.selectView.alpha = 0;
-}
 #pragma GetByCategoryData
 -(void)GetByCategoryData:(NSMutableArray*)array
 {
     
-    if (self.Products.count == 0)
-    {
-        self.Products = [NSMutableArray array];
-        
-    }else{
-        
-    }
 
+
+    self.Products = [NSMutableArray array];
+    
     for (NSMutableDictionary * dict in array)
     {
-        ProductModel * model = [[ProductModel alloc]init];
-        model.productId = [dict objectForKey:@"productId"];
-        model.categoryId = [dict objectForKey:@"categoryId"];
-        model.categoryName = [dict objectForKey:@"categoryName"];
-        model.productName = [dict objectForKey:@"productName"];
-        model.price = [dict objectForKey:@"price"];
-        model.brandid = [dict objectForKey:@"brandid"];
-        model.brandname = [dict objectForKey:@"brandname"];
-        model.inPrice = dict[@"inPrice"];
-        model.shopPrice = dict[@"shopPrice"];
-        NSMutableArray * TitleImages = [dict objectForKey:@"TitleImages"];
-        model.TitleImages = [NSMutableArray array];
-        for (NSMutableDictionary * imagesDict in TitleImages)
-        {
-            NSString * path = [imagesDict objectForKey:@"path"];
-            [model.TitleImages addObject:path];
-        }
-        if(model.price.length != 0)
-        {
-        [self.Products addObject:model];
-        }
+            ProductModel * model = [[ProductModel alloc]init];
+            model.productId = [dict objectForKey:@"productId"];
+            model.categoryId = [dict objectForKey:@"categoryId"];
+            model.categoryName = [dict objectForKey:@"categoryName"];
+            model.productName = [dict objectForKey:@"productName"];
+            model.price = [dict objectForKey:@"price"];
+            model.brandid = [dict objectForKey:@"brandid"];
+            model.brandname = [dict objectForKey:@"brandname"];
+            model.inPrice = dict[@"inPrice"];
+            model.shopPrice = dict[@"shopPrice"];
+            NSMutableArray * TitleImages = [dict objectForKey:@"TitleImages"];
+            model.TitleImages = [NSMutableArray array];
+            for (NSMutableDictionary * imagesDict in TitleImages)
+            {
+                NSString * path = [imagesDict objectForKey:@"path"];
+                [model.TitleImages addObject:path];
+            }
+            if(model.price.length != 0)
+            {
+                [self.Products addObject:model];
+            }
     }
-    
+        
     [_footer endRefreshing];
     [Tools showPromptToView:self.view atPoint:self.view.center withText:@"加载完毕" duration:0.7];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
-    
+        
+        
     NSLog(@"self.products.count:%lu",(unsigned long)self.Products.count);
     [self.myTableView reloadData];
+
+        
+    
+
     
 }
 - (IBAction)TouchEditorButton:(UIButton*)button

@@ -61,22 +61,13 @@ static dispatch_once_t onceToken;
 {
     
     manager = [self sharedManager];
-    [SVProgressHUD showWithStatus:@"加载中..." maskType:SVProgressHUDMaskTypeBlack];
+    //[SVProgressHUD showWithStatus:@"加载中..." maskType:SVProgressHUDMaskTypeBlack];
 
     return [manager POST:url parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
 
-        if (responseObject && completionBlock)
-        {
-            if ([responseObject[@"ret"] isEqualToNumber:@1])
-            {
-                completionBlock(responseObject,nil);
-                [SVProgressHUD showSuccessWithStatus:@"载入成功" maskType:SVProgressHUDMaskTypeNone];
-            }
-            else{
-                NSString * errorMsg = responseObject[@"msg"];
-                [SVProgressHUD showErrorWithStatus:errorMsg maskType:SVProgressHUDMaskTypeNone];
-            }
+        if(responseObject && completionBlock){
+            completionBlock(responseObject,nil);
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

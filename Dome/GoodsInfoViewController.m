@@ -37,6 +37,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    shareInfo = [ShareInfo shareInstance];
     self.MyTableView.delegate = self;
     self.MyTableView.dataSource = self;
     self.MyTableView.tableFooterView = [[UIView alloc]init];
@@ -157,6 +159,53 @@
     {
         [self showAlertViewForTitle:@"请选择货品" AndMessage:nil];
     }else{
+        
+        if (self.SelectArray.count ==0)
+        {
+            [self showAlertViewForTitle:@"请选择货品" AndMessage:nil];
+        }else{
+            HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            HUD.labelText = @"正在上架商品";
+            NSMutableString * selectedProductString = [NSMutableString stringWithString:@""];
+            for (ProductModel * model in self.SelectArray){
+                [selectedProductString appendFormat:@"%@,",model.productId];
+            }
+            //删除最后一个逗号
+            [selectedProductString substringToIndex:(selectedProductString.length -1)];
+            
+            NSDictionary * postDict = @{@"uid":shareInfo.userModel.userID,
+                                        @"pidlist":selectedProductString,
+                                        @"isshow":@"1"};
+            
+            [HTTPRequestManager postURL:OnOffSaleAPI andParameter:postDict onCompletion:^(id responseObject, NSError *error) {
+                
+                if ([responseObject[@"errormsg"] isEqualToString:@""]){
+                    
+                    UIAlertView * alertView = [[UIAlertView alloc]init];
+                    alertView.message = @"上架成功";
+                    [alertView addButtonWithTitle:@"确定"];
+                    [alertView show];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self GetData];
+                        
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        
+                    });
+                    
+                }
+                
+            }];
+            
+            
+            
+            
+        }
+        
+        
+        
+        
+        
         
     }
 }

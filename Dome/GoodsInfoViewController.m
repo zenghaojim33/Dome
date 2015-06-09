@@ -14,6 +14,7 @@
 #import "UMSocialWechatHandler.h"
 #import "UMSocial.h"
 #import "WXApi.h"
+#import "MJRefresh.h"
 #import "ProductViewController.h"
 @interface GoodsInfoViewController ()
 <

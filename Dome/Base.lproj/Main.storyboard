@@ -1306,28 +1306,15 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ex0-zw-2H0">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                                <state key="normal">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="TouchDome:" destination="xSj-hV-RdE" eventType="touchUpInside" id="27Q-3o-2OY"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.99607843137254903" green="0.40000000000000002" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="ex0-zw-2H0" firstAttribute="leading" secondItem="2QW-Ns-bDH" secondAttribute="leading" id="5Jp-Ef-Myp"/>
                                             <constraint firstItem="Cfa-b4-IAh" firstAttribute="leading" secondItem="xrJ-SS-tYE" secondAttribute="trailing" constant="25" id="Aee-Yo-Y5X"/>
-                                            <constraint firstItem="ex0-zw-2H0" firstAttribute="top" secondItem="2QW-Ns-bDH" secondAttribute="top" id="Hlm-kU-zgT"/>
-                                            <constraint firstAttribute="bottom" secondItem="ex0-zw-2H0" secondAttribute="bottom" id="Lon-gA-NYD"/>
                                             <constraint firstAttribute="trailing" secondItem="IyI-Ug-4et" secondAttribute="trailing" constant="8" id="Qgt-oM-Uay"/>
                                             <constraint firstAttribute="bottom" secondItem="Cfa-b4-IAh" secondAttribute="bottom" constant="4" id="Vh8-CC-IBe"/>
                                             <constraint firstItem="7Un-xU-ZD1" firstAttribute="leading" secondItem="xrJ-SS-tYE" secondAttribute="trailing" constant="25" id="e1E-qH-luI"/>
                                             <constraint firstItem="IyI-Ug-4et" firstAttribute="leading" secondItem="Cfa-b4-IAh" secondAttribute="trailing" constant="8" id="hTu-g2-BkS"/>
                                             <constraint firstAttribute="height" constant="44" id="hjp-Qx-5WI"/>
-                                            <constraint firstAttribute="trailing" secondItem="ex0-zw-2H0" secondAttribute="trailing" id="irI-rA-Zl0"/>
                                             <constraint firstItem="IyI-Ug-4et" firstAttribute="leading" secondItem="7Un-xU-ZD1" secondAttribute="trailing" constant="8" id="wm4-No-LqI"/>
                                             <constraint firstItem="xrJ-SS-tYE" firstAttribute="leading" secondItem="2QW-Ns-bDH" secondAttribute="leading" constant="8" id="yNl-qf-jPz"/>
                                             <constraint firstItem="7Un-xU-ZD1" firstAttribute="top" secondItem="2QW-Ns-bDH" secondAttribute="top" constant="4" id="yyM-Kc-jG7"/>
@@ -1701,6 +1688,15 @@
                                             <constraint firstItem="v6J-PQ-b2Q" firstAttribute="leading" secondItem="I78-Qm-l7d" secondAttribute="trailing" constant="8" id="wlX-oT-QTb"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ex0-zw-2H0">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="TouchDome:" destination="xSj-hV-RdE" eventType="touchUpInside" id="27Q-3o-2OY"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1904,7 +1900,7 @@
                                             </variation>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3lf-jG-qzq">
-                                            <rect key="frame" x="0.0" y="97" width="320" height="60"/>
+                                            <rect key="frame" x="0.0" y="97" width="375" height="60"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1GQ-o3-fTY">
                                                     <rect key="frame" x="0.0" y="0.0" width="64" height="60"/>
@@ -2125,7 +2121,7 @@
                                                 <constraint firstItem="1GQ-o3-fTY" firstAttribute="leading" secondItem="3lf-jG-qzq" secondAttribute="leading" id="DLt-FQ-bR9"/>
                                                 <constraint firstItem="CxH-Nh-BJk" firstAttribute="top" secondItem="3lf-jG-qzq" secondAttribute="top" id="EMT-7B-83F"/>
                                                 <constraint firstAttribute="bottom" secondItem="s1q-ut-vUq" secondAttribute="bottom" id="FO9-Uj-7XU"/>
-                                                <constraint firstAttribute="trailing" secondItem="CxH-Nh-BJk" secondAttribute="trailing" id="Iek-Fy-Fgg"/>
+                                                <constraint firstAttribute="trailing" secondItem="CxH-Nh-BJk" secondAttribute="trailing" constant="55" id="Iek-Fy-Fgg"/>
                                                 <constraint firstItem="zvY-Rb-h2I" firstAttribute="width" secondItem="VXD-f0-uEl" secondAttribute="width" id="Jqw-Gk-20n"/>
                                                 <constraint firstItem="zvY-Rb-h2I" firstAttribute="centerX" secondItem="AEI-CF-KMr" secondAttribute="centerX" id="Jro-1B-b2O"/>
                                                 <constraint firstItem="zvY-Rb-h2I" firstAttribute="width" secondItem="CxH-Nh-BJk" secondAttribute="width" id="KLx-Uu-jFQ"/>
@@ -2195,7 +2191,7 @@
                                     <constraints>
                                         <constraint firstItem="3lf-jG-qzq" firstAttribute="top" secondItem="kPs-bn-LTI" secondAttribute="bottom" constant="1" id="4hm-te-PQO"/>
                                         <constraint firstItem="3lf-jG-qzq" firstAttribute="top" secondItem="kPs-bn-LTI" secondAttribute="bottom" constant="1" id="5Mu-Rf-dl2"/>
-                                        <constraint firstAttribute="trailing" secondItem="3lf-jG-qzq" secondAttribute="trailing" id="ALd-38-3Pf"/>
+                                        <constraint firstAttribute="trailing" secondItem="3lf-jG-qzq" secondAttribute="trailing" constant="-55" id="ALd-38-3Pf"/>
                                         <constraint firstItem="kPs-bn-LTI" firstAttribute="leading" secondItem="hmP-En-yzb" secondAttribute="leading" id="Cbw-FG-z4T"/>
                                         <constraint firstItem="kPs-bn-LTI" firstAttribute="top" secondItem="s1A-Dc-vSn" secondAttribute="bottom" constant="1" id="HH0-p0-6aU"/>
                                         <constraint firstAttribute="bottom" secondItem="kPs-bn-LTI" secondAttribute="bottom" id="JyV-fm-SJI"/>
@@ -4201,7 +4197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UdH-fh-x23" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6693" y="108"/>
+            <point key="canvasLocation" x="6452" y="210"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="Mbg-LC-o2M">
@@ -5445,7 +5441,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oCE-mc-js7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6286" y="-217"/>
+            <point key="canvasLocation" x="6639" y="-358"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cYr-JG-jBn">

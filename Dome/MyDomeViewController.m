@@ -93,10 +93,24 @@
 -(void)UpData
 {
     NSString * uid = shareInfo.userModel.userID;
-    NSString * link = [[NSString stringWithFormat:Getbycategoryandvalueid,self.valueids,self.categoryid,pageindex,self.sort,_sequence,uid,@1] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary * postDict = @{@"uid":[NSString stringWithFormat:@"'%@'",uid],
+                                @"pagesize":@24,
+                                @"categoryid":self.categoryid,
+                                @"isshow":@1,
+                                @"sort":self.sort,
+                                @"sequence":@"asc",
+                                @"pageindex":@(pageindex),
+                                @"valueids":@"",
+                                @"uisshow":@1
+                                };
+    SBJsonWriter * json = [[SBJsonWriter alloc]init];
+    NSString * jsonData = [json stringWithObject:postDict];
+    NSString * link = [[NSString stringWithFormat:Getbycategoryandvalueid,jsonData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
     [HTTPRequestManager getURL:link andParameter:nil onCompletion:^(id responseObject, NSError *error) {
         NSMutableArray * response = [responseObject copy];
+        
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self GetByCategoryData:response];
 
@@ -302,11 +316,15 @@
         //删除最后一个逗号
         [selectedProductString substringToIndex:(selectedProductString.length -1)];
         
-        NSDictionary * postDict = @{@"uid":shareInfo.userModel.userID,
+        
+        
+        NSDictionary * postDict = @{@"uid":[NSString stringWithFormat:@"'%@'",shareInfo.userModel.userID],
                                     @"pidlist":selectedProductString,
                                     @"isshow":@"0"};
-    
-        [HTTPRequestManager postURL:OnOffSaleAPI andParameter:postDict onCompletion:^(id responseObject, NSError *error) {
+        SBJsonWriter * json = [[SBJsonWriter alloc]init];
+        NSString * jsonData = [json stringWithObject:postDict];
+        NSString * link = [[NSString stringWithFormat:OnOffSaleAPI,jsonData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [HTTPRequestManager getURL:link andParameter:nil onCompletion:^(id responseObject, NSError *error) {
            
             if ([responseObject[@"errormsg"] isEqualToString:@""]){
                 

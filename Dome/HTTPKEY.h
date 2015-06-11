@@ -11,7 +11,7 @@
 #define GetByCategoryID @"http://server.dome123.com/attribute.ashx?aim=getbycategoryid&cid=%@"
 
 //valueids=属性值id&categoryid=商品类别id&pagesize=每页记录数&pageindex=第几页&sort=排序字段
-#define  Getbycategoryandvalueid  @"http://server.dome123.com/product.ashx?aim=getbycategoryandvalueid&valueids=%@&categoryid=%@&pagesize=24&pageindex=%d&sort=%@&sequence=%@&uid='%@'&isshow=%@"
+#define  Getbycategoryandvalueid  @"http://app.dome123.com/Handler.ashx?Action=getbycategoryandvalueid&data=%@"
 
 
 
@@ -113,7 +113,7 @@
 //uid  //店长ID
 //pidlist  //商品ID 多个逗号,隔开
 //isshow  // 0下架  1上架
-#define OnOffSaleAPI @"http://server.dome123.com/product.ashx?aim=doshow"
+#define OnOffSaleAPI @"http://app.dome123.com/Handler.ashx?Action=doshow&data=%@"
 
 
 #endif

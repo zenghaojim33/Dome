@@ -160,7 +160,7 @@
         NSString * jsonData = [json stringWithObject:data];
         
         
-        NSString * link = [NSString stringWithFormat:Login,jsonData];
+        NSString * link = [NSString stringWithFormat:Login,jsonData] ;
 
         HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         HUD.labelText = @"正在登录";

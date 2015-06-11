@@ -28,7 +28,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>WetChat</string>
+			<string>Wechat</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>wx2f715ea59b2f5af0</string>

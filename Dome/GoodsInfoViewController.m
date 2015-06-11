@@ -178,7 +178,7 @@
                                         @"pidlist":selectedProductString,
                                         @"isshow":@"1"};
             
-            [HTTPRequestManager postURL:OnOffSaleAPI andParameter:postDict onCompletion:^(id responseObject, NSError *error) {
+            [HTTPRequestManager getURL:OnOffSaleAPI andParameter:postDict onCompletion:^(id responseObject, NSError *error) {
                 
                 if ([responseObject[@"errormsg"] isEqualToString:@""]){
                     
